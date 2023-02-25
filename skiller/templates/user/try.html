@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static',filename='animate.min.css')}}">
+    <link href=" {{url_for('static',filename='css/skiller.css')}} " rel="stylesheet">
+    <link href="{{ url_for('static',filename='heroes.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='accord.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <title>Skiller</title>
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+  
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+  
+        .b-example-divider {
+          height: 3rem;
+          background-color: rgba(0, 0, 0, .1);
+          border:0solid rgba(0, 0, 0, .15);
+          border-width: 1px 0;
+          box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+  
+        .b-example-vr {
+          flex-shrink: 0;
+          width: 1.5rem;
+          height: 100vh;
+        }
+  
+        .bi {
+          vertical-align: -.125em;
+          fill: currentColor;
+        }
+  
+        .nav-scroller {
+          position: relative;
+          z-index: 2;
+          height: 2.75rem;
+          overflow-y: hidden;
+        }
+  
+        .nav-scroller .nav {
+          display: flex;
+          flex-wrap: nowrap;
+          padding-bottom: 1rem;
+          margin-top: -1px;
+          overflow-x: auto;
+          text-align: center;
+          white-space: nowrap;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  @include transition($transition-collapse);
+
+  &.collapse-horizontal {
+    width: 0;
+    height: auto;
+    @include transition($transition-collapse-width);
+  }
+}
+
+      </style>
+
+    {% block header %}  {% endblock %}
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--this is for header-->
+        <div class="row" id="navbar"> 
+           
+            <div class="col-md-2 " style="line-height: 50px;">
+                <a href=" {{url_for('home')}} "> <img src=" {{url_for('static',filename='images/skiller_logo5.jpg')}} " width="" height="" alt="logo"> </a>
+            </div>
+            <div class="col-md-3">
+                <a href="" class="nalink" style="text-decoration:none; color:  rgb(43,89,195);"> <b>HOW IT WORKS</b>  </a> 
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="nalink" style="text-decoration: none; color:  rgb(43,89,195);"> <b> ABOUT </b>  </a>
+            </div>
+            <div class="col-md-2" style="text-align:right">
+                <a href="{{url_for('join')}}" class="btn btn-outline-primary" style="text-decoration: none"> <b> Join</b></a> 
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <a href=" {{url_for('user_login')}} " style="text-decoration: none; color: rgb(43,89,195);" class="btn" ><b> Login  </b></a>
+            </div>
+        </div>
+        
+         <!--this is for the search button-->
+         {% block search_button %}
+        <div class="row" id="rowbut">
+             <div class="col-md-10" id="colbut">
+            <form action="">
+             
+                <div class="input-group">
+                    <input type="text" aria-label="First name" class="form-control" placeholder="Search Talents/Jobs">
+                    <input type="text" aria-label="Last name" class="form-control" placeholder="Location">
+                    <button class="btn btn-lg btn-danger" type="submit"> Search</button> 
+                </div>
+            
+            
+            </form>
+            </div> 
+        </div>
+        {% endblock %}
+
+        
+
+        {% block banner_display %}
+
+        <!-- This is for the banner with a slide display effect-->
+        <div class="row" id="ban1" >
+            <div class="col-md-8">
+                <h2 id="heading2">Specially Crafted for the African Market</h2>
+                <p class="firstp">Networking the right way that soots our environment</p>
+            </div>
+            <div class="col-md-2 ban1">
+                <img src="{{url_for('static',filename='images/skill2.png')}}" width="98%" alt="">
+                
+            </div>
+        </div>
+
+        {% endblock banner_display  %}
+
+        {% block card_details %}
+            <!-- For the card details -->
+            <div class="row"> 
+               <!--  <div class="col-md-12">-->
+                    <div class="card-group">
+                        <div class="card">
+                          <img src=" {{url_for('static', filename='images/code1.jpg')}} " class="card-img-top" alt="programming picture">
+                          <div class="card-body">
+                            <h3 class="card-title">Programming & Tech</h3>
+                            <p class="card-text">Find the best software developers to bring out your dream ideas to life. Here in skiller, we have experienced and well cordinated programmers to deliver beyond expectations </p>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
+                          </div>
+                        </div>
+
+                        <div class="card">
+                          <img src=" {{url_for('static', filename='images/makeup4.jpg')}}" class="card-img-top" alt="make-up picture" >
+                          <div class="card-body">
+                            <h3 class="card-title">Make-up Artist</h3>
+                            <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <img src=" {{url_for('static', filename='images/painting.jpg')}}"  class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h3 class="card-title">House Painting
+                            </h3>
+                            <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    
+               <!-- </div>-->
+               <div class='col'>  
+			
+                <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+           Kalvin Cachio
+          </button>
+        </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">  <img src='images/g11.jpg' class='rounded-circle' style='padding:20px; float:left'>
+            Since 2018 Em-web Solutions has been responsible for the development of our website which has been instrumental to the growth of our Institution. Even while working remotely Em-web has been highly responsive, organized and strategic in their thinking. In addition to staying on top of day-to-day site changes and builds, provided us with great advice to stay on top of the current changes in web technologies.
+    
+                <br> <b> - Kalvin Cachio </b>
+                Founder at Calvin Institute Canada.
+          </div>
+        </div>
+        
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Fiona Glam
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">  <img src='images/g2.jpg' class='rounded-circle' style='padding:20px'>
+            Since 2018 Em-web Solutions has been responsible for the development of our website which has been instrumental to the growth of our Institution. Even while working remotely Em-web has been highly responsive, organized and strategic in their thinking. In addition to staying on top of day-to-day site changes and builds, provided us with great advice to stay on top of the current changes in web technologies.
+    
+                <br> <b> - Fiona Glam </b>
+                F-Glam Costmetics Nig Ltd. Nigeria
+          </div>
+        </div>
+      </div>
+      
+    </div>
+                </div>
+            </div>
+        
+        {% endblock card_details %}
+          <!--End of the card zone-->
+
+          {% block banner %}
+        <div class="row banner" >
+
+            <div class="col-md-10">
+                <h3 id="heading1">NEED SOMETHING DONE?</h3>
+            </div>
+            <div class="col-md-3"> 
+                <h2> 
+                    <img src=" {{url_for('static',filename='images/post_job2.png')}} " width="20%" alt="">
+                    Post a Job</h2>
+                    <p id="para1">It’s free and easy to post a project. Simply fill in a title, description and budget and competitive bids come within minutes.</p>
+            </div>
+            <div class="col-md-3">
+                <h3> <img src=" {{url_for('static',filename='images/chose.png')}} " width="20%" alt=""> Hire a Skiller</h3>
+                <p id="para1">No job is too big or too small. We've got skillers for jobs of any size or budget, across many skills. No project is too complex. We can get it done!</p>
+            </div>
+            
+            <div class="col-md-3">
+                <h3> <img src=" {{url_for('static',filename='images/pay.png')}} " width="20%" alt=""> Pay safely</h3>
+                <p id="para1">Only pay for work when it has been completed and you're satisfied with the quality using our unique payment system.</p>
+            </div>
+            <div class="col-md-3">
+                <h3> <img src="{{url_for('static',filename='images/help.png')}}" width="20%" alt=""> Ready to Help if Need be</h3> 
+
+                <button type="button" class="btn btn-secondary"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    data-bs-title="TOur talented and dedicated team can help you resolve challenges almost as soon as they are raised.">
+                        Know more...
+                </button>
+            </div>
+            <hr>
+        </div>
+
+
+        <div class="row banner" >
+
+            <div class="col-md-10">
+                <h3 id="heading1" style="color:rgb(43, 89, 195);">WHY SKILLER?</h3>
+            </div>
+            <div class="col-md-3">
+                <h2> <img src=" {{ url_for('static',filename='images/portfolio.png')}}  " width="20%" alt="">
+                    View skiller's Portfolio/profile</h2>
+                    <p id="para1">Find professionals and highly skilled individuals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
+            </div>
+            <div class="col-md-3">
+                <h3> <img src=" {{ url_for('static',filename='images/bid.png')}} " width="20%" alt=""> Fast Bids</h3>
+                <p id="para1">Receive free quotes from our talented skillers fast. 90% of projects get bid on within 3 minutes.</p>
+            </div>
+            
+            <div class="col-md-3">
+                <h3> <img src=" {{ url_for('static',filename='images/track.png')}} " width="20%" alt=""> Monitor Progress</h3>
+                <p id="para1">Skiller.com has a very large pool of quality freelancers nation-wide. Over 1million skilld freelancers to choose from.</p>
+            </div>
+            <div class="col-md-3">
+                <h3> <img src=" {{ url_for('static',filename='images/quality3.png')}} " width="30%" alt=""> Quality Work</h3>
+                <p id="para1">Keep up-to-date and on-the-go with our time tracker, and mobile app. Always know what freelancers are up to. </p>
+            </div>
+            <hr>
+        </div>
+        {% endblock banner %}
+        
+
+        <!--Footer-->
+    {% block footer %}
+        <div class="row">
+            <div class="col-md-2 futer1"> 
+                <img src=" {{ url_for('static',filename='images/logoc.png')}} " width="25%" alt="">
+                <hr>
+                <p class="futer"> <a href="" class="futer"> <b>Help and Support</b></a>  <br>
+                    
+                </p>
+            </div>
+            <div class="col-md-2 futer1"> 
+                
+                <p class="futer"> <a href="" class="futer"> <b>Skiller</b></a>  </p>
+                <p class="futer"    >
+                    <a href="" class="futer"> Digital</a>  <br>
+                    <a href="" class="futer"> Artesan</a>
+                </p>
+            </div>
+            <div class="col-md-3 futer1"> 
+                <p class="futer"> <a href="" class="futer"> <b>About Us</b></a>  </p>
+                <p class="futer">
+                    <a href="" class="futer"> How it works</a>  <br>
+                    <a href="" class="futer"> Careers</a>
+                    <br>
+                    <a href="" class="futer"> Security</a>
+                    <br>
+                    <a href="" class="futer"> Investment</a>
+                    <br>
+                    <a href="" class="futer"> Research & Analysis</a>
+                    <br>
+                    <a href="" class="futer"> News</a>
+        
+                </p>
+            </div>
+            <div class="col-md-3 futer1"> 
+                <p> <a href="" class="futer"> <b>Terms</b> </a>  </p>
+                <p class="futer">
+                    <a href="" class="futer"> Privacy Policy</a>  <br>
+                    <a href="" class="futer"> Terms and Conditions</a>
+                    <br>
+                    <a href="" class="futer"> Copyright Policy</a>
+                    <br>
+                    <a href="" class="futer"> Fees and Charges</a>
+                    <br>
+                    <a href="" class="futer"> Partnership </a>
+        
+                </p>
+            </div>
+            <div class="col-md-2 futer1"> 
+                <p> <a href="" class="futer"> <b>Contact</b> </a>  </p>
+                <p >
+                    <a href="" class="futer"> Contact Us</a>  <br> <br>
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="10%" alt=""></a>
+                    
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="10%"></a>
+                    
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/instagram.png')}}" alt="" width="10%"></a>
+                    
+                    <a href="" class="social"> <img src="  {{url_for('static',filename='images/twitter.png')}} " alt="" width="10%"></a>
+        
+                </p>
+            </div>
+            
+        </div>
+                
+        </div>
+    {% endblock  %}
+
+            {% block javascript %}
+        <script src=" {{url_for('static',filename='jquery.min.js')}} "> </script>
+     
+
+        
+        <script type="text/javascript">
+         
+        </script>
+        {% endblock %}
+</body>
+</html

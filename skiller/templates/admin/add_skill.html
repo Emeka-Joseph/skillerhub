@@ -1,0 +1,76 @@
+
+{% extends 'admin/index.html' %}
+
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(11, 2, 2);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    }
+    #dash2{
+      background-color:rgb(237,238,192);
+    }
+    div{
+      border: 0px solid black;
+    }
+    #collections{
+      border: 0px solid blue;
+    }
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+   <div class="row mt-5">
+      <div class="col-md-3" id="dash" style="position:static;">
+        <!--<div class="form-floating mb-5" style="border: 1px solid black; height: 100px; width: 100px;    align-self:flex-start; background-color: silver;">
+          <span >profile picture</span>
+        </div>-->
+       
+        
+      </div>
+        <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 1px solid brown; background-color: bisque;">
+          <hr>
+            <div class="row mt-1" style="display:flex; align-content:space-around;"> 
+              <div class="col-md-12" style="text-align: center;">
+               
+                  <div class="row" id="collections" style="display: flex; justify-content: space-between;"> 
+                 
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-12">       
+                          
+                            <form action="" method="post">
+                                <h3> Add Vocational Skill(s) </h3>
+                            <div> 
+                                <label for=""> Skill Name </label> 
+                                <input type="text" name="skill" placeholder="enter new skill" class="form-control">
+                            </div>
+                            <div> 
+                                <button class="btn btn-outline-primary btn-sm form-control"> <b>Add Skill</b> </button>
+                                <a href="{{url_for('admin_dashboard')}}" class="btn btn-outline-warning text-black form-control ">Return to Dashboard</a>
+                            </div>
+                            </form>
+
+
+                    </div>
+                    </div>
+                </div>         
+              </div>
+              </div>
+
+              
+                          
+            </div>
+          </div>
+        </div>
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+    
+

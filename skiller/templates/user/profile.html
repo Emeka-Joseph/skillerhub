@@ -1,0 +1,46 @@
+{% extends "user/index.html"%}
+  
+ 
+
+
+{% block search_button %} 
+
+
+<div class="row"> 
+  <div class="col-md-3" style="background-color: rgb(0, 0, 0);padding:1em; border: 1px solid brown;">
+    {% include 'user/menu.html' %}
+  </div>
+
+  <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: bisque;">
+    <!---<form method="post" action="{{url_for('user_dashboard')}}">-->
+      <form action="" method="post" enctype="multipart/form-data">    
+        <div class="form-floating mb-3">
+            
+            <h4>{{ deets.user_fullname }}</h4>
+        </div>
+        <div class="form-floating mb-5" style="border: 1px solid black; height: 200px; width: 200px; align-self: center;">
+        </div>
+        <div class="col-md-4">
+          <label for="">Select File</label>
+          <input type="file" name="pix">
+           <button class="btn btn-success mt-3" >Upload Profile Picture</button>
+        </div>
+      </form>
+    </div>
+    
+    
+     </div>
+ 
+
+{% endblock %}
+
+{% block banner_display %}  {% endblock %}
+{% block card_details %}   {% endblock %}
+ {% block banner %}   {% endblock %}
+
+ 
+
+
+
+ 
+

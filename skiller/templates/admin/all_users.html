@@ -1,0 +1,79 @@
+
+{% extends 'admin/index.html' %}
+
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(11, 2, 2);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    }
+    #dash2{
+      background-color:rgb(237,238,192);
+    }
+    div{
+      border: 0px solid black;
+    }
+    #collections{
+      border: 0px solid blue;
+    }
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+   <div class="row mt-5">
+      <div class="col-md-3" id="dash" style="position:static">        
+      </div>
+        
+        <div class="col-md-9" id="dash2" > 
+            <a href="{{url_for('admin_dashboard')}}" class="btn btn-primary ">Return to Dashboard</a>
+        <table class="table table-stripped col-md-7">
+            <thead>
+                <tr>
+                    <th> Serial </th>
+                    <th> User_fullname </th>
+                    <th> Gender </th>
+                    <th> Email Address</th>
+                    <th> Phone Number </th>
+                    <th> User picture </th>
+                    <th> Date of Registration </th>
+                    <th> User_state </th>
+                    <th> User_Address </th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for user in allusers %}
+                    <tr>
+                        <td> {{loop.index}} </td>
+                        <td> {{user.user_fullname}} </td>
+                        <td> {{user.gender}} </td>
+                        <td> {{user.user_email}} </td>
+                        <td> {{user.user_phone}} </td>
+                        <td> {{user.user_pix}} </td>
+                        <td> {{user.user_datereg}} </td>
+                        <td> {{user.user_state}} </td>
+                        <td> {{user.user_address}} </td>
+                        <td>                                       
+                            <a href=" {{ url_for('delete_user', id=user.user_id)}} " class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this user?')"> <i class="fa fa-trash">Delete</i>  </a> </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </table>                  
+        </div>    
+                             
+              
+              
+              </div>      
+                       
+
+                    
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+    
+

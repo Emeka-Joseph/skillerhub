@@ -1,0 +1,41 @@
+/* css for the signup switch */
+
+#switch{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+    min-height: 50%;
+    min-width: 50%;
+}
+div{
+    border: 2px solid red;
+}
+.ss{
+    display:list-item;
+    border:0px solid rgb(0,0,0);
+    width:70%;
+    height:100%;
+    color: black;
+    line-height: 100%;
+    align-items: center;
+}
+.lh{
+    line-height: 100%;
+}
+
+/* CSS for the user signup */
+#rowform{
+    border: 0px solid blue;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}   
+#signupform{
+    background-color:rgb(237,238,192);
+    border: 0px solid blue;
+}
+#address2{
+    margin-bottom: 10px;
+}

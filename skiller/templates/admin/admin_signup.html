@@ -1,0 +1,53 @@
+  {% extends 'user/index.html' %}
+
+  {% block search_button %} 
+  
+  <div class="row" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
+    <div class="col-md-5 mt-5" id="signupform" style="background-color: rgb(13, 121, 121);background-color: rgb(198, 197, 91);">
+      <form action="{{ url_for('admin_signup')}}" method="post">
+
+        <div>
+          <label for="fullname" class="form-label mt-3"> Fullname Name </label>
+          <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname name" class="form-control" required>
+        </div>
+
+        
+
+        
+        <div>
+          <label for="email" class="form-label mt-3"> Email Address </label>
+          <input type="email" name="email" id="email" placeholder="Enter your email address" class="form-control" required>
+        </div>
+
+        
+        
+          <div class="row"> 
+          <div class="col-md-6">
+            <label for="password" class="form-label"> Password </label>
+            <input type="password" name="password" id="pwd" placeholder="enter password" class="form-control" required>
+
+          </div>
+          <div class="col-md-6">
+            <label for="con_password" class="form-label"> Confirm Password </label>
+            <input type="password" name="password" id="cpwd" placeholder="confirm password" class="form-control" required>
+
+          </div>
+        </div> 
+
+
+          <div>
+          <input type="checkbox" name="" id="checkbox">
+          <span style="display: block">Agree to terms and conditions </span>
+
+          <button class="btn btn-primary btn-lg mb-3">signup</button>
+          <span>Already have account? <a href="{{url_for('user_login')}}">:Login</a></span>
+        </div>
+      </form>
+
+    </div>
+  </div> {% endblock %}
+  {% block banner_display %}  {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+  
+    

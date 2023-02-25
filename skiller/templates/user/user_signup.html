@@ -1,0 +1,67 @@
+  {% extends 'user/index.html' %}
+
+  {% block search_button %} 
+  
+  <div class="row" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
+    <div class="col-md-5 mt-5" id="signupform" style="background-color: rgb(13, 121, 121);background-color: rgb(198, 197, 91);">
+      <div class="content" style="background-color: white;padding:3em">
+        <h1>Join Skiller Community</h1>
+      
+        <form action="" method="post" enctype="multipart/form-data">
+          <div class="mb-3 form-group"> 
+              {{join.email.label(class_='col-md-2')}} {{join.email.errors}}
+                      <!--Create a hidden token to protect the routes-->
+                      {{ join.csrf_token }} 
+              <div class="col-md-6">
+                        {{ join.email(class_='form-control border-success') }}
+              </div>
+
+          </div>
+          
+      
+          <!-- password and confirm password  -->> 
+          <div class="mb-3 form-group row">
+       
+            {{ contact.email.label(class_='col-md-2') }}
+        
+        <div class="col-md-6">
+             {{ contact.email(class_='form-control border-success') }}
+        </div>
+    
+        {% if contact.email.error %}
+        {% for email_error in contact.email.errors  %}
+            <div class="col-md-3">
+                <span class="alert alert-danger">
+                    {{msg_error}} </span>
+            </div>
+            {% endfor %}
+            {% endif %}
+            </div>
+          <!--  Gender -->
+          <div class="mb-3 form-group row">
+              {{join.gender.label}}
+              {{join.gender(class_='form-control form-control-lg')}}
+          </div>
+
+           <!--  Submit  -->
+          <div class="mb-3 form-group row">
+              {{join.submit(class_='btn btn-primary')}}
+          </div>
+      
+      
+      
+      
+        </form>
+      
+        
+      
+      
+       </div>
+
+    </div>
+  </div> {% endblock %}
+  {% block banner_display %}  {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+  
+    

@@ -1,0 +1,44 @@
+  {% extends 'user/index.html' %}
+
+  {% block search_button %} 
+
+  
+  <div class="row" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
+    <div class="col-md-4 mt-5" id="signupform" style="background-color: rgb(13, 121, 121);background-color: rgb(198, 197, 91);">
+
+      <form action="" method="post">
+      
+        
+        <div>
+          <label for="email" class="form-label mt-3"> Email Address </label>
+          <input type="email" name="email" id="email" placeholder="Enter your email address" class="form-control" required>
+        
+      </div>
+        
+          <div>
+            <label for="password" class="form-label mt-3"> Password </label>
+            <input type="password" name="password" id="" placeholder="enter password" class="form-control" required>
+            <div class="row" > 
+                <div class="col" style="display: flex; justify-content: center;"> 
+            <div>
+                <button class="btn btn-primary btn-lg mb-3 mt-4 form-control">Login</button>
+                <p>Don't have account yet? <a href="{{url_for('join')}}">:signup</a></p>
+            
+                    </div>
+
+                </div>
+                </div>
+          </div>
+          
+        
+          
+      
+      </form>
+
+    </div>
+  </div> {% endblock %}
+  {% block banner_display %}  {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+  
+    

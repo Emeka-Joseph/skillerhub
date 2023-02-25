@@ -1,0 +1,15 @@
+<div class="list-group list-group-flush my-3" style="color: white;">
+                <a href="dashboard" class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fas fa-tachometer-alt me-2"  ></i>Dashboard</a>
+
+                <a href="{{url_for('usermanager')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
+                    <i class="fa-tachometer fa-file"></i>  Manage Users</a>
+ 
+                <a href="{{url_for('skills')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
+                    <i class="fa-sharp fa-solid fa-eye"></i> Categories and Skills </a>
+
+                <a href="{{url_for('admin_logout')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light"> 
+
+                    Hi, {{ deets.admin_fullname }}
+                    <i class="fa-sharp fa-solid fa-power-off"></i> Logout</a>
+            </div>

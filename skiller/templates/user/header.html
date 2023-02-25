@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{url_for('static',filename='bootstrap/css/bootstrap.css')}} ">
+    <title>Skiller</title>
+    <link rel="stylesheet" href="fontawesome6/css/all.min.css">
+    <link rel="stylesheet" href="animate.min.css">
+    <link href=" {{url_for('static',filename='skiller.css')}} " rel="stylesheet" >
+</head>
+<body>
+    <div class="container-fluid">
+        <!--this is for header-->
+        <div class="row" id="navbar"> 
+           
+            <div class="col-md-2 " style="line-height: 50px;">
+                <a href=" {{url_for('index')}} "> <img src=" {{url_for('static',filename='images/skiller_logo5.jpg')}} " width="" height="" alt="logo"> </a>
+            </div>
+            <div class="col-md-3">
+                <a href="" class="nalink" style="text-decoration:none; color:  rgb(43,89,195);"> <b>HOW IT WORKS</b>  </a> 
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="nalink" style="text-decoration: none; color:  rgb(43,89,195);"> <b> ABOUT </b>  </a>
+            </div>
+            <div class="col-md-2" style="text-align:right">
+                <a href="{{url_for('signup')}}" class="btn btn-outline-primary" style="text-decoration: none"> <b> SIGN UP</b></a> 
+            </div>
+            <div class="col" style="text-align:left">
+                <a href=" " style="text-decoration: none; color: rgb(43,89,195);" class="btn" ><b> SIGN IN </b></a>
+            </div>
+        </div>
+        
+         <!--this is for the search button-->
+         {% block search_button %}
+        <div class="row" id="rowbut">
+             <div class="col-10" id="colbut">
+            <form action="">
+             
+                <div class="input-group">
+                    <input type="text" aria-label="First name" class="form-control" placeholder="Search Talents/Jobs">
+                    <input type="text" aria-label="Last name" class="form-control" placeholder="Location">
+                    <button class="btn btn-lg btn-danger" type="submit"> Search</button> 
+                </div>
+            
+            
+            </form>
+            </div>
+        </div>
+        {% endblock %}

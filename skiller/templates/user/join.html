@@ -1,0 +1,89 @@
+  {% extends 'user/index.html' %}
+
+  {% block search_button %} 
+  
+  <div class="row" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
+    <div class="col-md-12" style="display: flex; justify-content: center;">
+        <h1 style="color: blue;">Join Skiller Community</h1>
+    </div>
+    <div class="col-md-5 mt-3" id="signupform" style="background-color: rgb(205, 210, 152); padding: 20px;">
+       
+        <form action="{{ url_for('register')}}" method="post">
+           
+            
+
+            <div>
+              <label for="fullname" class="form-label mt-3"> Fullname Name </label>
+              <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname name" class="form-control" required>
+            </div>
+    
+            <div>
+              <label for="gender" class="form-label mt-3"> Gender </label>
+              <select name="gender" id="" class="form-control"> Select Gender
+                <!---for gender-->
+                <option value="Select Gender">Click to Select Gender</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+              </select>
+            </div>
+    
+            
+            <div>
+              <label for="email" class="form-label mt-3"> Email Address </label>
+              <input type="email" name="email" id="email" placeholder="Enter your email address" class="form-control" required>
+            </div>
+    
+            <div>
+              <label for="number" class="form-label mt-3"> Phone Number </label>
+              <input type="" name="phone" id="number" placeholder="Mobile Number format:  07031234567" class="form-control" required>
+              </div>
+    
+            <div class="row">
+              <div class="col"> 
+                <label for="state" class="form-label mt-3"> State </label>
+                <select name="stateid" id="state"       class="form-control"> 
+                  <!---for states-->
+                  <option value="Select State">Click to Select State</option>
+                  {% for state in st %}
+                  <option value="{{state.state_name}}">{{ state.state_name }}</option>
+                  {% endfor %}
+    
+                </select>
+              </div> 
+            <div >
+              <label for="address" class="form-label mt-3"> Address Line </label>
+              <input type="text" name="address" id="address" placeholder="enter house no, street name and area" class="form-control" >
+            </div>
+          </div>
+            
+              <div class="row"> 
+              <div class="col-md-6">
+                <label for="password" class="form-label"> Password </label>
+                <input type="password" name="password" id="pwd" placeholder="enter password" class="form-control" required>
+    
+              </div>
+              <div class="col-md-6">
+                <label for="conpwd" class="form-label"> Confirm Password </label>
+                <input type="password" name="conpwd" id="conpwd" placeholder="confirm password" class="form-control" required>
+    
+              </div>
+            </div> 
+              <div>
+              <input type="checkbox" name="" id="checkbox">
+              <span style="display: block">Agree to terms and conditions </span>
+    
+              <button class="btn btn-primary btn-lg mb-3">signup</button>
+              <span>Already have account? <a href="{{url_for('user_login')}}">:Login</a></span>
+            </div>
+          
+          </form>
+         
+     
+
+    </div>
+  </div> {% endblock %}
+  {% block banner_display %}  {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+  
+    

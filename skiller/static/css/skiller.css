@@ -1,0 +1,208 @@
+/* Date: 14/Jan/2023
+Program: External CSS skiller 
+Author: Emeka Joseph
+This is external css for skiller web 
+
+/ css for the index.html page*/
+
+
+
+body{
+    background-color: rgb(249, 249, 245);
+}
+.container{
+    display: flex;
+}
+
+div{
+    border: 0px solid red;
+    text-align:center;
+    width: 100%;
+
+}
+#rowbut{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+#colbut{
+    background-color:blue;
+    border: 10px solid blue;
+    border-radius: 50%;
+    margin-top: 60px;
+    z-index: -2;
+}
+#navbar{
+    background-color: rgb(243, 244, 246);
+    color: rgb(43,89,195);
+    text-decoration: none; 
+    min-height: 50px;
+    
+    z-index: 300;
+}
+.navlink{
+    text-decoration: none; 
+    text-transform: none;
+    color: rgb(43,89,195);
+}
+#gap{
+    display: flex;
+    border: 0px dashed red;
+    min-height: 50px;
+    width: 100%;
+}
+.banner{
+    background-color:white;
+    min-height: 100px;
+    padding: 20px;
+}
+#ban1{
+    background-color: rgb(253, 253, 252);   
+}
+#heading1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3em;
+    color: rgb(43, 89, 195);
+    text-align: left;
+}
+#heading2{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3em;
+    color: rgb(252, 68, 15);
+}
+#para1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1em;
+}
+.firstp{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2em;
+}
+.card-body{
+    background-color: rgb(43,89,195);
+    color: white;
+}
+.card-title{
+    font-size: 3.5em;
+}
+.card-group{
+    display:flex;
+    justify-content: space-between;
+}
+.card{
+    border: 10px solid rgb(253, 251, 251);
+}
+#cardbut{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#ban1{
+    background-image:url('');
+    display: flex;
+    justify-content: left;
+}
+.futer1{
+    background-color: black;
+    color: white;
+
+    text-decoration: none;
+}
+.futer{
+    color: white;
+    text-decoration: none;
+}
+.futer :hover {
+    text-decoration: underline;
+}
+.social{
+    margin: 5px;
+    padding: 5px;
+}
+
+
+/* css for the user_profile.html page*/
+
+
+#profile{
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+
+}
+#profile_photo{
+    width: 50%;
+    height: 170px;
+    border: 1px dotted black;
+    display:inline-block;
+}
+#uname{
+    display: inline-block;
+}
+
+
+/* CSS for Dashboard*/
+.profile_pic{
+    width: 200px;
+    height: 200px;
+    border:1px solid blue;
+}
+.dash_side ul li a{
+    background-color: black;
+    color: white;
+}
+
+#dash_side ul{
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+  .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+  .b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+  }
+
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+
+  .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
+  .nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }

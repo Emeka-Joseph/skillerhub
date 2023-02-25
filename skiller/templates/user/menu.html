@@ -1,0 +1,32 @@
+<div class="list-group list-group-flush my-3" style="color: white;">
+                <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fas fa-tachometer-alt me-2"  ></i>Dashboard</a>
+
+            
+                <a href="{{url_for('user_profile')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
+                    <i class="fa-tachometer fa-file"></i>  Update Profile Picture</a>
+                
+
+                <a href="{{url_for('skill')}}" class=" list-group-item-action bg-transparent second-text fw-bold text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-tachometer-alt me-2"> </i> Skill </a> 
+                
+                
+                {% if deets.user_skill !='' and deets.user_skill != None  %}
+                <p style="color:yellow">{{deets.user_skill}}</p>
+                
+                {% endif %}
+                     
+          
+                        <hr sytle="border:3px solid white; color:brown">
+
+                <a href="{{url_for('album')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
+                    <i class="fa-sharp fa-solid fa-eye"></i> Portfolio </a>
+
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
+                    <i class="fa-solid fa-share-from-square"></i> Contact Address </a>
+
+                    
+
+                <a href="{{url_for('user_logout')}}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold ">
+                   
+                    <i class="fa-sharp fa-solid fa-power-off"></i> Logout</a>
+            </div>

@@ -1,0 +1,71 @@
+{% extends 'user/index.html' %}
+
+{% block header %}
+<style>
+
+  #opt{
+    display: flex;
+    align-items: center;
+    background-color:rgb(8, 20, 249);
+    min-height: 100px;
+    min-width: 100px;
+    text-decoration: none;
+  }
+  #opt1{
+    display: flex;
+    align-items: center;
+    background-color:rgb(235, 70, 15);
+    min-height: 100px;
+    min-width: 100px;
+    text-decoration: none;
+    
+  }
+  #opta {
+   
+    text-decoration: none;
+  }
+  h6{
+    color: white;
+    text-align: center;
+   
+  }
+  #rowchoice{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  div{
+    border: 0px solid red;
+  }
+
+
+</style>
+{% endblock header %}
+
+
+
+{% block search_button %} 
+ 
+
+<div class="row"  >
+
+    <div class="col-md-10" id="rowchoice"> 
+
+     <span>Are you skilled? </span> <a href="/login" id="opta"> <div class="col-md-6 mb-4" id="opt" > <h6> Join our skilled Teams</h6> </div> </a>
+    <hr>
+    <a href="" id="opta"> <div class="col-md-6" id="opt1"> <h6> Join our Happy Clients</h6></div> </a>
+    </div>
+    
+  </div>
+
+{% endblock %}
+
+{% block banner_display %} 
+
+
+ 
+  
+
+{% endblock %}
+{% block card_details %}   {% endblock %}
+ {% block banner %}   {% endblock %}
