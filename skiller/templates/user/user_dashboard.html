@@ -59,7 +59,7 @@
                   
                      <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" class="img-fluid">
 
-                     <a href="{{url_for('delete_album', id=deets.album_id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this photo?')"> <i class="fa fa-trash">Delete</i>  </a>
+                     <a href="{{url_for('delete', id=p.album_id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this photo?')"> <i class="fa fa-trash">Delete</i>  </a>
                   
                   </div>    
                    {% endif %}          

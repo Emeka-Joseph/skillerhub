@@ -140,16 +140,19 @@ def skill():
             return redirect(url_for('user_dashboard'))
 
 
-@app.route('/delete/<id>')
-def delete_album(id):
-    deets = db.session.query(Album).filter(Album.album_id==id).first()
-
-    #albumobj = Album.query.get_or_404(id)
-    db.session.delete(deets)
-    db.session.commit()
-    flash('Succesfully Deleted')
-    return redirect(url_for('user_dashboard',deets=deets))
-    
+@app.route('/delete/<int:id>')
+def delete(id): 
+    pic_to_del=Album.query.get_or_404(id)
+    try:
+        db.session.delete(pic_to_del)
+        db.session.commit()
+        flash('Picture deleted successfully')
+        my_pics = Album.query.order_by(Album.Album_userid) 
+        return redirect(url_for('user_dashboard'))
+        
+    except:
+        flash('whoops, there was a problem deleting the picutre')
+        return redirect(url_for('user_dashboard'))
 
 
 
