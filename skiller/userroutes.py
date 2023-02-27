@@ -1,8 +1,8 @@
 import os, random, string
 from flask import render_template, redirect, flash, session, request, url_for
+from sqlalchemy import desc,asc,or_
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.sql import text
-from sqlalchemy import or_
 
 
 #3rd party importations
@@ -16,9 +16,9 @@ def generate_name():
 
 @app.route('/') 
 def home():
-    """id = session['user']
-    deets = db.session.query(Users).get(id)"""
-    return render_template('user/index.html') 
+    id = session['user']
+    deets = db.session.query(Users).get(id)
+    return render_template('user/index.html',deets=deets) 
 
 
 @app.route('/join')
@@ -230,7 +230,7 @@ def album():
                         #albumpic = db.session.query(Album).get(session['user'])
                         #albumpic.album_name=newname
                         db.session.commit()
-                        flash('File uploaded')
+                        flash('File uploaded successfully')
                         return redirect(url_for('user_dashboard'))
                         
                     else:

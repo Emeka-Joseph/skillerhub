@@ -1,9 +1,9 @@
 /* Date: 14/Jan/2023
-Program: External CSS skiller 
+/*Program: External CSS skiller 
 Author: Emeka Joseph
-This is external css for skiller web 
+This is external css for skiller web
 
-/ css for the index.html page*/
+/* css for the index.html page*/
 
 
 
@@ -33,8 +33,8 @@ div{
     z-index: -2;
 }
 #navbar{
-    background-color: rgb(243, 244, 246);
-    color: rgb(43,89,195);
+    background-color: rgb(14, 8, 171);
+    color: rgb(254, 254, 255);
     text-decoration: none; 
     min-height: 50px;
     
@@ -133,7 +133,7 @@ div{
 #profile_photo{
     width: 50%;
     height: 170px;
-    border: 1px dotted black;
+    border: 0px dotted black;
     display:inline-block;
 }
 #uname{
@@ -145,7 +145,7 @@ div{
 .profile_pic{
     width: 200px;
     height: 200px;
-    border:1px solid blue;
+    border:0px solid blue;
 }
 .dash_side ul li a{
     background-color: black;
@@ -174,7 +174,7 @@ div{
   .b-example-divider {
     height: 3rem;
     background-color: rgba(0, 0, 0, .1);
-    border: solid rgba(0, 0, 0, .15);
+    border:0px solid rgba(0, 0, 0, .15);
     border-width: 1px 0;
     box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
   }
