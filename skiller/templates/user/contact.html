@@ -1,0 +1,62 @@
+{% extends "admin/index.html"%}
+  
+
+
+
+{% block search_button %} 
+
+
+<div class="row"> 
+  <div class="col-md-3" style="background-color: rgb(0, 0, 0);padding:1em; border: 1px solid brown;">
+    {% include 'user/menu.html' %}
+  </div>
+
+  <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: bisque;">
+    <!---<form method="post" action="{{url_for('user_dashboard')}}">-->
+      <form action="" method="post" enctype="multipart/form-data">    
+
+        <div>
+            <label for="number" class="form-label mt-3"> Phone Number </label>
+            <input type="" name="phone" id="number" placeholder="Mobile Number format:  07031234567" class="form-control" required>
+            </div>
+  
+        <div class="row"> 
+            <div class="col"> 
+              <label for="state" class="form-label mt-3"> State </label>
+              <select name="statename" id="statename"       class="form-control"> 
+                <!---for states-->
+                <option value="Select State">Click to Select State</option>
+                {% for s in allstates %}
+                <option value="{{s.state_name}}">{{ s.state_name }}</option>
+                {% endfor %}
+              </select>
+            </div> 
+          <div >
+                <label for="address" class="form-label mt-3"> Address Line </label>
+                <input type="text" name="address" id="address" placeholder="enter house no, street name and area" class="form-control" >
+          </div>
+          <div class="form-floating" align="center">
+            <button class="w-50 btn btn-lg btn-success" type="submit">Update Contact</button>
+        </div>
+        </div>
+
+
+      </form>
+    </div>
+    
+    
+     </div>
+ 
+
+{% endblock %}
+
+{% block banner_display %}  {% endblock %}
+{% block card_details %}   {% endblock %}
+ {% block banner %}   {% endblock %}
+
+ 
+
+
+
+ 
+

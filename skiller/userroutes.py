@@ -6,7 +6,7 @@ from sqlalchemy.sql import text
 
 
 #3rd party importations
-from skiller.models import State,Lga,Users,Skiller, Album,Skill #import the required tables from the database
+from skiller.models import State,Users, Album,Skill #import the required tables from the database
 from skiller.forms import JoinForm
 from skiller import app, db,CSRFProtect
 
@@ -16,47 +16,80 @@ def generate_name():
 
 @app.route('/') 
 def home():
-    id = session['user']
+    id = session.get('user')
     deets = db.session.query(Users).get(id)
     return render_template('user/index.html',deets=deets) 
 
 
 @app.route('/join')
-
 def join():
-    #st = State.query.all()
-    st = db.session.query(State).all()
+    states = State.query.all()
     #lg = db.session.query(Lga).all()
-    return render_template('user/join.html',st=st)  
+    return render_template('user/join.html',states=states)  
 
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET','POST']) 
 def register():
-    fullname = request.form.get('fullname')
-    gender = request.form.get('gender')
-    email=request.form.get('email')
-    phone = request.form.get('phone')
-    state = request.form.get('state')
-    #state = request.form.get('stateid')
-    address = request.form.get('address')
-    pwd=request.form.get('password')
-    con_pwd = request.form.get('conpwd')
-    hashed_pwd = generate_password_hash(pwd)
-    if fullname !='' and email !='' and pwd !='' and gender!='' and phone!='' and state!='' and address !='' and pwd == con_pwd :
+    if request.method=='GET':
+        deets = db.session.query(Users)
+        states = State.query.all()
+        return render_template('user/join.html',deets=deets)
+    else:
+        fullname = request.form.get('fullname')
+        #userstate = db.session.query(State)
+        #state = userstate.state_name
+        gender = request.form.get('gender')
+        email=request.form.get('email')
+        phone = request.form.get('phone')
+        #state = request.form.get('stateid')
+        #state = request.form.get('stateid')
+        #address = request.form.get('address')
+        pwd=request.form.get('password')
+        con_pwd = request.form.get('conpwd')
+        hashed_pwd = generate_password_hash(pwd)
+        if fullname !='' and email !='' and pwd !='' and gender!='' and pwd == con_pwd :
 
-         #insert into database using ORM method
-        u=Users(user_fullname=fullname,user_email=email,user_pwd=hashed_pwd, user_phone =phone, user_pix='', user_address=address, gender=gender, user_state=state)
-        #add to session
-        db.session.add(u)
-        db.session.commit()
-        #to get the id of the record that has just been inserted
-        userid=u.user_id     
-        session['user']=userid
+            #insert into database using ORM method
+            u=Users(user_fullname=fullname,user_email=email,user_pwd=hashed_pwd, user_phone =phone, user_pix='',user_skill='', user_address='', gender=gender, user_state='')
+            #add to session
+            db.session.add(u)
+            db.session.commit()
+            #to get the id of the record that has just been inserted
+            """userid=u.user_id     
+            session['user']=userid"""
+            flash('Thank you for joining the community, kindly login to continue')
+            return redirect(url_for('user_login'))
+        else:
+            flash('You must complete all the fields to signup OR check that your password match is correct')
+            return redirect(url_for('join'))
+
+
+@app.route('/contact', methods=['GET','POST'])
+def contact():
+    id = session.get('user')
+    if id==None:
         return redirect(url_for('user_login'))
     else:
-        flash('You must complete all the fields to signup')
-        return redirect(url_for('join'))
+        if request.method=='GET':
+            
+            deets = db.session.query(Users).filter(Users.user_id==id).first()
+            allstates = State.query.all()
+            return render_template('user/contact.html',deets=deets,allstates=allstates)
+        else:
+            phone = request.form.get('phone')
+            state = request.form.get('statename')
+            address = request.form.get('address')
+            userobj = db.session.query(Users).get(id)
+            userobj.user_phone=phone
+            userobj.user_state=state
+            userobj.user_address=address
+            """c=Users(user_phone=phone,user_state=state,user_address=address)
+            db.session.add(c)"""
+            db.session.commit() 
+            flash('contact details successfully updated')
+            return redirect(url_for('user_dashboard'))
+        
 
 
 
@@ -120,24 +153,20 @@ def projects():
 def skill():
     id = session.get('user')
     if id ==None:
-        return redirect('user/user_login.html')
+        return render_template('user/user_login.html')
     else:
         if request.method=='GET':
             deets = db.session.query(Users).filter(Users.user_id==id).first()
             chose = Skill.query.all() 
             return render_template('user/skill.html',chose=chose,deets=deets)
         else:
-            skiller = request.form.get('skill')
-            #skillobj = db.session.query(Users).get(session['user'])
-            #n=Users(user_skill=skiller)  #skillobj.skill=skiller
-            #userobj = db.session.query(User).get(id)
+            skill = request.form.get('skill')
+            skilldit = request.form.get('hint')
             userobj = db.session.query(Users).get(id)
-            userobj.user_skill=skiller
-            
-            #db.session.add()
+            userobj.user_skill=skill 
             db.session.commit()
             flash('Skill successfully updated')
-            return redirect(url_for('user_dashboard'))
+            return redirect(url_for('user_dashboard',skilldit=skilldit))
 
 
 @app.route('/delete/<int:id>')

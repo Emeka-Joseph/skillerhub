@@ -7,7 +7,13 @@
         <h1 style="color: blue;">Join Skiller Community</h1>
     </div>
     <div class="col-md-5 mt-3" id="signupform" style="background-color: rgb(205, 210, 152); padding: 20px;">
-       
+      {% with c=get_flashed_messages() %}
+      {% if c %}
+          {% for msg in c %}
+          <div class="alert alert-info col-md-5">{{ msg }}</div>
+          {% endfor %}
+      {% endif %}
+      {% endwith %}
         <form action="{{ url_for('register')}}" method="post">
            
             
@@ -36,25 +42,7 @@
             <div>
               <label for="number" class="form-label mt-3"> Phone Number </label>
               <input type="" name="phone" id="number" placeholder="Mobile Number format:  07031234567" class="form-control" required>
-              </div>
-    
-            <div class="row">
-              <div class="col"> 
-                <label for="state" class="form-label mt-3"> State </label>
-                <select name="stateid" id="state"       class="form-control"> 
-                  <!---for states-->
-                  <option value="Select State">Click to Select State</option>
-                  {% for state in st %}
-                  <option value="{{state.state_name}}">{{ state.state_name }}</option>
-                  {% endfor %}
-    
-                </select>
-              </div> 
-            <div >
-              <label for="address" class="form-label mt-3"> Address Line </label>
-              <input type="text" name="address" id="address" placeholder="enter house no, street name and area" class="form-control" >
-            </div>
-          </div>
+              </div>  
             
               <div class="row"> 
               <div class="col-md-6">

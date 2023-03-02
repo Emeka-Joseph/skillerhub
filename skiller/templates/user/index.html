@@ -84,34 +84,33 @@
             </div>
             {% if session.get('user')==None %}
             <div class="col-md-2" style="text-align:right">
-                <a href="{{url_for('join')}}" class="btn btn-outline-primary" style="text-decoration: none"> <b> Join</b></a> 
+                <a href="{{url_for('join')}}" class="btn btn-outline-primary text-light" style="text-decoration: none"> <b> Join</b></a> 
             </div>
             
             <div class="col-md-2" style="text-align:left">
                 <a href=" {{url_for('user_login')}} " style="text-decoration: none; color: rgb(247, 247, 248);" class="btn" ><b> Login  </b></a>
             </div>   
                 {% else %} 
-                
                 <div class="col-md-2" style="text-align:right">
-                    <a href=" {{url_for('user_dashboard')}} " style="text-decoration: none; color: rgb(248, 249, 251);" class="btn" ><b> Logged in  </b></a>
-                    <p> <b> Welcome {{ deets.user_fullname }}</b></p>
-                </div>
-
-                
-                
+                    <a href=" {{url_for('user_dashboard')}} " style="text-decoration: none; color: rgb(248, 249, 251);" class="btn" ><b> Logged in  </b>
+                    <p>As {{deets.user_fullname}} </p></a>
+                    
+                </div>           
             {% endif %}
+        {% if session.get('user')!=None %}
             <div class="col-md-2" id="" style="position:static;">
-                
+            
                 {% if deets: %}
                         {% if deets.user_pix !='' and deets.user_pix != None  %}
                         <img src="{{url_for('static', filename='uploads/'+deets.user_pix)}}" alt="mdo" width="70" height="70" class="rounded-circle">
                         {% else %}
                         <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
                         {% endif %}
-                    {% else %}
+                        {% else %}
                       <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">    
-                      {% endif %}
+                    {% endif %}
               </div>
+        {% endif %}
         </div>
         
          <!--this is for the search button-->

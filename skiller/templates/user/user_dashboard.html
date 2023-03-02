@@ -37,7 +37,9 @@
                 {% endif %}
             {% else %}
               <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+              
         {% endif %}
+        <p style="color: yellow;"> <b> Welcome {{ deets.user_fullname }}</b></p>
         {% include 'user/menu.html' %}
       </div>
         <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: rgb(233, 231, 228);">
@@ -76,23 +78,7 @@
           </div>
     </div>
   {% endblock %}
-  {% block banner_display %} <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>  {% endblock %}
+  {% block banner_display %}   {% endblock %}
   {% block card_details %}   {% endblock %}
    {% block banner %}   {% endblock %}
 
