@@ -1,0 +1,51 @@
+  {% extends 'user/index.html' %}
+
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(11, 2, 2);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    }
+    #dash2{
+      background-color:rgb(237,238,192);
+    }
+    div{
+      border: 0px solid blue;
+    }
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+  <div class="container-fluid" style="background-color:rgb(237,238,192) ;">
+    <div class="row" style="display: flex; justify-content: center;">
+      
+        <div class="col-md-12" style="display: flex; justify-content: center;">  
+                  
+            <form action="" method="post" enctype="multipart/form-data">
+
+                <h4>{{ deets.user_fullname }} </h4> 
+                <span> Upload the 3rd favourite picture of your completed project to be seen by the general public </span>
+              <div class="col-md-6" > 
+                <input type="file" name="display_picture3">
+                 <button class="btn btn-success btn-sm mt-3 form-control" >Upload 3rd DP</button>
+                 <a href="/dashboard" class="btn btn-warning btn-sm mt-3 form-control" >Cancel</a>
+              </div>
+            </form>
+        </div>
+    
+    </div>
+
+  </div>
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+
+    
+
+    

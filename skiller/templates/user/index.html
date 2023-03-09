@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
     
-    <link rel="stylesheet" href="{{url_for('static',filename='animate.min.css')}}">
     <link href=" {{url_for('static',filename='css/skiller.css')}} " rel="stylesheet">
+    
     <link href="{{ url_for('static',filename='heroes.css')}}" rel="stylesheet">
     <link href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -34,7 +34,6 @@
           border-width: 1px 0;
           box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
         }
-  
         .b-example-vr {
           flex-shrink: 0;
           width: 1.5rem;
@@ -92,8 +91,8 @@
             </div>   
                 {% else %} 
                 <div class="col-md-2" style="text-align:right">
-                    <a href=" {{url_for('user_dashboard')}} " style="text-decoration: none; color: rgb(248, 249, 251);" class="btn" ><b> Logged in  </b>
-                    <p>As {{deets.user_fullname}} </p></a>
+                    <a href=" {{url_for('user_dashboard')}} " style="text-decoration: none; color: rgb(248, 249, 251);" class="btn" ><b> My Account  </b>
+                    <p>{{deets.user_fullname}} </p></a>
                     
                 </div>           
             {% endif %}
@@ -115,20 +114,25 @@
         
          <!--this is for the search button-->
     {% block search_button %}
-        <div class="row" id="rowbut">
-             <div class="col-md-10" id="colbut">
-            <form action="">
-             
-                <div class="input-group">
-                    <input type="text" aria-label="First name" class="form-control" placeholder="Search Talents/Jobs">
-                    <input type="text" aria-label="Last name" class="form-control" placeholder="Location">
-                    <button class="btn btn-lg btn-danger" type="submit"> Search</button> 
-                </div>
-            
-            
-            </form>
-            </div> 
+        <div class="row mt-5" id="rowbut">
+            <div class="col-md-5">
+                <form action="{{url_for('search')}}" method="POST">
+                    
+                    <!--<input type="text" id="searchskill" name="text"  style="text-align: center;" placeholder="search for skill/talent" class="form-control">
+                    <p id="datalist"></p> -->
+                 <select name="skill" id="skill"   class="form-control"> 
+                        <option value="Select Skill">Click to Select Skill</option> 
+                    {% for s in allskill %}
+                        <option value="{{s.skill_name}}">{{ s.skill_name }}</option>
+                    {% endfor %}
+                </select>
+                    <button class="btn btn-primary"> Search</button>
+                </form>
+            </div>
         </div>
+ 
+       
+
     {% endblock %}
 
         
@@ -147,11 +151,14 @@
             </div>
         </div>
 
+
+        
+
     {% endblock banner_display  %}
 
     {% block card_details %}
             <!-- For the card details -->
-            <div class="row"> 
+            <div class="row my-4"> 
                <!--  <div class="col-md-12">-->
                     <div class="card-group">
                         <div class="card">
@@ -320,9 +327,31 @@
     {% endblock footer %}
 
     {% block javascript %}
-        <script src=" {{url_for('static',filename='jquery.min.js')}} "> </script> 
-        <script type="text/javascript">
-         
+     
+     
+     <script src="{{url_for('static',filename='jquery.min.js')}}"></script> 
+    <script type="text/javascript">
+        
+       $(document).ready(function(){
+        $('#searchskill').on('input',function(e){
+            //alert('I am jquery')
+            $('#datalist').empty();
+            $.ajax({
+                method:"post",
+                url:"/livesearch",
+                data:{text:$("#searchskill").val()},
+                success:function(res){
+                    var data = "<div class='list-group'>";
+                        $.each(res,function(index,value){
+                            data += "<p class='list-group-item list-group-item-action'>" +value.Skill +"</p>";
+                        });
+                        data += "</div>";
+                        $('#datalist').html(data);
+                }
+            })
+        })
+       })
+
         </script>
     {% endblock javascript %}
 </body>

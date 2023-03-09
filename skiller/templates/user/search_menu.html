@@ -1,0 +1,33 @@
+<div class="list-group list-group-flush my-3" style="color: white;">
+            
+
+               <p>Skills </p> 
+                
+               {{deets.user_fullname}}
+                
+                <p style="color:yellow">{{deets.user_skill}}</p>     
+                <p style="color:yellow"> {{ hint }}  </p>  
+          
+                        <hr sytle="border:3px solid white; color:brown">
+
+                        <p> Contact Address</p>
+
+                    {% if session.get('user')!=None or session.get('client')!=None %}
+                    <p>{{deets.user_address}}  </p>
+                    <p> {{deets.user_state}} </p>
+                    <p> {{deets.user_phone}} </p>
+                    {% else %}
+
+                    <p> Kindly signup/login to view the contact details  </p>
+                    {% endif %} 
+
+                    
+            {% if session['user']==None %}
+                <a href="{{url_for('user_logout')}}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold ">
+                
+                    
+                    <i class="fa-sharp fa-solid fa-power-off"></i> <b>Logout</b> </a>
+
+            {% endif %}
+            </div>
+            

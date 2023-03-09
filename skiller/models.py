@@ -10,6 +10,10 @@ class Users(db.Model):
     user_skill = db.Column(db.String(100),nullable=False)
     user_phone=db.Column(db.String(120),nullable=True) 
     user_pix=db.Column(db.String(120),nullable=True) 
+    user_dp1=db.Column(db.String(100),nullable=True) 
+    user_dp2=db.Column(db.String(100),nullable=True)
+    user_dp3=db.Column(db.String(100),nullable=True)
+
     user_datereg=db.Column(db.DateTime(), default=datetime.utcnow)
     user_state=db.Column(db.String(100), nullable=True)
     #user_lga = db.Column(db.Integer, db.ForeignKey('lga.lga_id'))
@@ -43,6 +47,13 @@ class Album(db.Model):
     Album_userid=db.Column(db.Integer, db.ForeignKey('users.user_id'))
     #relationship
     catalogue=db.relationship('Users',backref='user_album')
+
+class DisplayPictures(db.Model):
+    dp_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
+    dp_name=db.Column(db.String(100),nullable=True)
+    dp_userid=db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    #relationship
+    displaypics=db.relationship('Users',backref='user_dp')
 
 
 """class Skiller(db.Model):

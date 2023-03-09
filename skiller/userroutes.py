@@ -1,12 +1,19 @@
-import os, random, string
-from flask import render_template, redirect, flash, session, request, url_for
-from sqlalchemy import desc,asc,or_
+import os, random, string,json
+from flask import render_template, redirect, flash, session, request, url_for,jsonify
+from sqlalchemy import desc,asc,or_,func
+
+#from flask import flask_mysql
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.sql import text
+from flask_wtf import FlaskForm 
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, DateTimeLocalField
+from wtforms.validators import DataRequired, length, ValidationError, Regexp, EqualTo, Email
+
 
 
 #3rd party importations
-from skiller.models import State,Users, Album,Skill #import the required tables from the database
+from skiller.models import State,Users, Album,Skill,DisplayPictures #import the required tables from the database
 from skiller.forms import JoinForm
 from skiller import app, db,CSRFProtect
 
@@ -14,13 +21,62 @@ def generate_name():
     filename = random.sample(string.ascii_lowercase,10) 
     return ''.join(filename) 
 
+class JoinForm(FlaskForm):
+    fullname = StringField('fullname:',validators=[DataRequired(), Regexp("^[A-Za-z]*",0,"Your Fullname must not contain anyother character except string")], render_kw={'placeholder':"Enter your fullname"})
+
+    gender = SelectField('gender:',validators=[DataRequired('Kindly select your gender to proceed')])
+
+    email = StringField('Your Email:',validators=[Email(message="Hello, please enter a valid email"), DataRequired(message="your email address is needed in order to join")])
+    
+    password = PasswordField('password:', validators=[DataRequired(length(min=6,message='your passowrod must be at least 6 digits'))])
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password', message='kindly re-enter password to match')])
+    
+    submit = SubmitField('Join')
+
+
+
 @app.route('/') 
 def home():
     id = session.get('user')
     deets = db.session.query(Users).get(id)
-    return render_template('user/index.html',deets=deets) 
+    allskill = Skill.query.all()
+    return render_template('user/index.html',deets=deets,allskill=allskill) 
 
 
+@app.route('/livesearch', methods=['POST','GET'])
+def livesearch():
+    if request.method=='GET':
+        searchbox = request.form.get('text')
+        search = "%{}%".format(searchbox)
+        #skillset = Skill.query.filter(Skill.skill_name.like(search)).all()
+        skillset = db.session.query(Skill).filter(Skill.skill_name.like(search)).all()
+        return json.dumps(skillset) 
+
+@app.route('/selectskill',methods=['POST','GET'])
+def selectskill():
+    allskill = Skill.query.all()
+    #selectbox = request.form
+    
+@app.route('/search',methods=['POST','GET'])
+def search():
+    deets = db.session.query(Users).all()
+    for p in deets:
+        #alldeets=User.query.order_by(func.random()).limit(3).all()
+        #deets = Users.query.all()
+        propic = Album.query.order_by(Album.Album_userid.desc()).limit(3).all()
+        #propic = Album.query.filter(Album.Album_userid==p.user_id).order_by(Album.Album_userid.desc()).all()
+        displays = DisplayPictures.query.all() 
+        """for d in display:
+            dis = db.session.query(DisplayPictures).filter(DisplayPictures.dp_userid!=None).order_by(DisplayPictures.dp_userid.desc()).limit(3)
+            displays = dis"""
+        #for t in propics
+        skill = Skill.query.all() 
+        if request.method=='POST':
+            skill_in_need = request.form.get('skill')
+            skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
+            return render_template('user/search.html',deets=deets,displays=displays,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random,propic=propic)
+        
+   
 @app.route('/join')
 def join():
     states = State.query.all()
@@ -133,10 +189,12 @@ def user_dashboard():
         id = session['user']
         deets = db.session.query(Users).get(id)
         username=deets.user_fullname
-        propic = Album.query.all()
+        propic = Album.query.order_by(Album.album_id.desc()).all()
+        disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
         #db.session.query(Album).all()
         album_userid = db.session.query(Users).get(id)
-        return render_template('user/user_dashboard.html',deets=deets,username=username,propic=propic)
+        dp_userid = db.session.query(Users).get(id)
+        return render_template('user/user_dashboard.html',deets=deets,username=username,propic=propic,disp=disp)
         
     else: 
         return redirect(url_for('user_login'))
@@ -198,7 +256,6 @@ def user_profile():
             file = request.files['pix'] 
             filename = file.filename #original filename
             filetype = file.mimetype
-            #note to correct the profile_picture.html and name it ppi
             allowed = ['.png', '.jpg','.jpeg']
             if filename !='':
                 #upload
@@ -251,13 +308,11 @@ def album():
                         pics.save("skiller/static/uploads/album/"+newname)
                         #albumobj = db.session.query(Users).get(session['user'])
                         albumid = db.session.query(Users).get(session['user'])
-                        albumid.user_album.album_userid=id
+                        albumid.user_album.Album_userid=id
 
                         #albumid.user_id=session['user']
                         f = Album(album_name=newname,Album_userid=id) 
                         db.session.add(f)
-                        #albumpic = db.session.query(Album).get(session['user'])
-                        #albumpic.album_name=newname
                         db.session.commit()
                         flash('File uploaded successfully')
                         return redirect(url_for('user_dashboard'))
@@ -268,5 +323,104 @@ def album():
                     flash('Please chose a file')
                     
 
+@app.route('/displaypics', methods=['POST', 'GET'])
+def displaypics():
+    id = session.get('user')
+    if id ==None:
+        return redirect('/login')
+    else:
+        if request.method =='GET':
+            deets = db.session.query(Users).filter(Users.user_id==id).first()
+            return render_template('user/displaypics.html',deets=deets)
+        else:
+                pics = request.files['display_picture'] 
+                filename = pics.filename #original filename
+                filetype = pics.mimetype
+                allowed = ['.png', '.jpg','.jpeg']
+                if filename !='':
+                    #upload
+                    name,ext = os.path.splitext(filename) 
+                    #import os on line 1
+                    if ext.lower() in allowed:
+                        newname = generate_name()+ext
+                        pics.save("skiller/static/uploads/dp/"+newname)
+                        dpid = db.session.query(Users).get(session['user'])
+                        
+                        #dpid.user_dp1.dp_userid=id
+                        dpid.user_dp1=newname
+                        db.session.commit()
+                        flash('File uploaded successfully')
+                        return redirect(url_for('user_dashboard'))
+                    else:
+                        return 'File extension not allowed '
+                else:
+                    flash('Please chose a file')
+
+
+@app.route('/displaypics2', methods=['POST', 'GET'])
+def displaypics2():
+    id = session.get('user')
+    if id ==None:
+        return redirect('/login')
+    else:
+        if request.method =='GET':
+            deets = db.session.query(Users).filter(Users.user_id==id).first()
+            return render_template('user/displaypics2.html',deets=deets)
+        else:
+                pics = request.files['display_picture2'] 
+                filename = pics.filename #original filename
+                filetype = pics.mimetype
+                allowed = ['.png', '.jpg','.jpeg']
+                if filename !='':
+                    #upload
+                    name,ext = os.path.splitext(filename) 
+                    #import os on line 1
+                    if ext.lower() in allowed:
+                        newname = generate_name()+ext
+                        pics.save("skiller/static/uploads/dp/"+newname)
+                        dpid = db.session.query(Users).get(session['user'])
+
+                        dpid.user_dp2=newname
+                        db.session.commit()
+                        flash('File uploaded successfully')
+                        return redirect(url_for('user_dashboard'))
+                    else:
+                        return 'File extension not allowed '
+                else:
+                    flash('Please chose a file')
+
+
+
+@app.route('/displaypics3', methods=['POST', 'GET'])
+def displaypics3():
+    id = session.get('user')
+    if id ==None:
+        return redirect('/login')
+    else:
+        if request.method =='GET':
+            deets = db.session.query(Users).filter(Users.user_id==id).first()
+            return render_template('user/displaypics3.html',deets=deets)
+        else:
+                pic3 = request.files['display_picture3'] 
+                filename = pic3.filename #original filename
+                filetype = pic3.mimetype
+                allowed = ['.png', '.jpg','.jpeg']
+                if filename !='':
+                    #upload
+                    name,ext = os.path.splitext(filename) 
+                    #import os on line 1
+                    if ext.lower() in allowed:
+                        newname = generate_name()+ext
+                        pic3.save("skiller/static/uploads/dp/"+newname)
+                        dpid = db.session.query(Users).get(session['user'])
+                     
+                        dpid.user_dp3=newname
+                        db.session.commit()
+                        flash('File uploaded successfully')
+                        return redirect(url_for('user_dashboard'))
+                    else:
+                        return 'File extension not allowed '
+                else:
+                    flash('Please chose a file')
             
             
