@@ -15,7 +15,7 @@ body{
 }
 
 div{
-    border: 0px solid red;
+    border: 1px solid red;
     text-align:center;
     width: 100%;
 
@@ -67,7 +67,7 @@ div{
 }
 #heading2{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 3em;
+    font-size: 1.5em;
     color: rgb(252, 68, 15);
 }
 #para1{
@@ -79,11 +79,13 @@ div{
     font-size: 2em;
 }
 .card-body{
-    background-color: rgb(43,89,195);
+    background-color: rgb(154, 161, 179);
     color: white;
 }
 .card-title{
-    font-size: 3.5em;
+    font-size: 1.8em;
+    color: brown;
+    text-decoration-color:brown
 }
 .card-group{
     display:flex;

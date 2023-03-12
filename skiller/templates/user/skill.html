@@ -11,7 +11,7 @@
     {% include 'user/menu.html' %}
   </div>
 
-  <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: bisque;">
+  <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; align-items: center; border: 0px solid brown; background-color: bisque;">
     <!---<form method="post" action="{{url_for('user_dashboard')}}">-->
       <form action="" method="post" enctype="multipart/form-data">    
 
@@ -25,7 +25,7 @@
                 <option value="{{s.skill_name}}">{{s.skill_name}}</option> 
                 {% endfor %}
             </select>
-            <textarea name="hint" id="hint" cols="30" rows="10" placeholder="brief extra detials and other skills if any"></textarea>
+            <textarea name="hint" id="hint" cols="35" rows="5" placeholder="We think you are wonderful, tell us briefly about your skills"></textarea>
            <button class="btn btn-success mt-3" >Update Skill</button>
         </div>
     </div>

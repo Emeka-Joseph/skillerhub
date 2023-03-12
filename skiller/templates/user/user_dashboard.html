@@ -39,9 +39,12 @@
                 <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
         {% endif %}
 
-        <p style="color: yellow;"> <b> Welcome {{ deets.user_fullname }}</b></p>
+        <p style="color: rgb(253, 253, 252);"> <b> Welcome {{ deets.user_fullname }}</b></p>
+        {% if session['user']!=None %}
         {% include 'user/menu.html' %}
+        {% endif %}
       </div>
+      
         <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: rgb(233, 231, 228);">
           <hr>
             <div class="row" style="display:flex; align-content:space-around;"> 
@@ -66,7 +69,7 @@
                   
                      <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="250" height="350">
 
-                     
+      
 
                      <a href="{{url_for('delete', id=p.album_id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this photo?')"> <i class="fa fa-trash">Delete</i>  </a>
                   
@@ -78,12 +81,13 @@
                           
             </div>
           </div>
+          
     </div>
   {% endblock %}
   {% block banner_display %}   {% endblock %}
   {% block card_details %}   {% endblock %}
    {% block banner %}   {% endblock %}
-
+n
         {% block javascript %} 
         <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
     <script type="text/javascript">

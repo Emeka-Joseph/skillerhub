@@ -92,93 +92,88 @@
                 {% else %} 
                 <div class="col-md-2" style="text-align:right">
                     <a href=" {{url_for('user_dashboard')}} " style="text-decoration: none; color: rgb(248, 249, 251);" class="btn" ><b> My Account  </b>
-                    <p>{{deets.user_fullname}} </p></a>
+                    <p>Logged in </p></a>
                     
                 </div>           
             {% endif %}
-        {% if session.get('user')!=None %} 
-            <div class="col-md-2" id="" style="position:static;">
-            
-                {% if deets: %}
-                        {% if deets.user_pix !='' and deets.user_pix != None  %}
-                            <img src="{{url_for('static', filename='uploads/'+deets.user_pix)}}" alt="mdo" width="70" height="70" class="rounded-circle">
-                            {% else %}
-                            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
-                        {% endif %}
-                            {% else %}
-                            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">    
-                {% endif %}
-            </div>
-        {% endif %}
-        </div>
+        
         
          <!--this is for the search button-->
     {% block search_button %}
         <div class="row mt-5" id="rowbut">
             <div class="col-md-5">
                 <form action="{{url_for('search')}}" method="POST">
-                    <label for=""> Filter Results by location </label>
+                    
                     <!--<input type="text" id="searchskill" name="text"  style="text-align: center;" placeholder="search for skill/talent" class="form-control">
                     <p id="datalist"></p> -->
                  <select name="skill" id="skill"   class="form-control"> 
-                        <option value="Select Skill">Search for skills</option> 
+                        <option value="Select Skill">Click to Select Skill</option> 
                     {% for s in allskill %}
                         <option value="{{s.skill_name}}">{{ s.skill_name }}</option>
                     {% endfor %}
-                </select> 
-
-               
+                </select>
                     <button class="btn btn-primary"> Search</button>
                 </form>
             </div>
         </div>
-     {% endblock %}
+ 
+       
+
+    {% endblock %}
+
+        
+
     {% block banner_display %}
 
         <!-- This is for the banner with a slide display effect-->
         <div class="row" id="ban1" >
             <div class="col-md-8">
-                <h2 id="heading2">Specially Crafted for the Skillful Enterpreneurs/Business Entities</h2>
+                <h2 id="heading2">Specially Crafted for the African Market</h2>
                 <p class="firstp">Networking the right way that soots our environment</p>
             </div>
-            <div class="col-md-4 ban1">
+            <div class="col-md-2 ban1">
                 <img src="{{url_for('static',filename='images/skill2.png')}}" width="98%" alt="">
                 
             </div>
         </div>
+
+
+        
+
     {% endblock banner_display  %}
 
     {% block card_details %}
             <!-- For the card details -->
-            <div class="row my-4 card-group"> 
+            <div class="row my-4"> 
                <!--  <div class="col-md-12">-->
-                        <div class=" col-md-4 card">
-                          <img src=" {{url_for('static', filename='images/code1.jpg')}} " class="card-img-top" alt="programming picture" width="300" height="350">
+                    <div class="card-group">
+                        <div class="card">
+                          <img src=" {{url_for('static', filename='images/code1.jpg')}} " class="card-img-top" alt="programming picture">
                           <div class="card-body">
-                            <h5 class="card-title">Programming & Tech</h5>
-                            <p class="card-text">Find the best software developers to bring out your dream ideas to life.  </p>
-                            <a href="" class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to see more...</a>
+                            <h3 class="card-title">Programming & Tech</h3>
+                            <p class="card-text">Find the best software developers to bring out your dream ideas to life. Here in skiller, we have experienced and well cordinated programmers to deliver beyond expectations </p>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
                           </div>
                         </div>
-                    <div class="col-md-4 card">
-                          <img src=" {{url_for('static', filename='images/makeup4.jpg')}}" class="card-img-top" alt="make-up picture" width="300" height="350">
+                    <div class="card">
+                          <img src=" {{url_for('static', filename='images/makeup4.jpg')}}" class="card-img-top" alt="make-up picture" >
                           <div class="card-body">
-                            <h5 class="card-title">Make-up Artist</h5>
+                            <h3 class="card-title">Make-up Artist</h3>
                             <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
-                            <a href="" class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to see more...</a>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
                           </div>
                         </div>
-                        <div class="col-md-4 card">
-                          <img src=" {{url_for('static', filename='images/painting.jpg')}}"  class="card-img-top" alt="..." width="300" height="350">
+                        <div class="card">
+                          <img src=" {{url_for('static', filename='images/painting.jpg')}}"  class="card-img-top" alt="...">
                           <div class="card-body">
-                            <h5 class="card-title">House Painting
-                            </h5>
+                            <h3 class="card-title">House Painting
+                            </h3>
                             <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
-                            <button class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to learn more...</button>
+                            <button class="btn btn-lg btn-warning btn-outline-info text-black" id="cardbut">Click to learn more...</button>
                             
                           </div>
                         </div>
-                      
+                      </div>
                     
                <!-- </div>-->
             </div>
@@ -193,31 +188,28 @@
                 <h3 id="heading1">NEED SOMETHING DONE?</h3>
             </div>
             <div class="col-md-3"> 
-                <img src=" {{url_for('static',filename='images/post_job2.png')}} " width="20%" alt="">
                 <h2> 
+                    <img src=" {{url_for('static',filename='images/post_job2.png')}} " width="20%" alt="">
                     Post a Job</h2>
-                    <p id="para1" style="font-size: 1.4em;">It’s free and easy to use.</p>
+                    <p id="para1">It’s free and easy to post a project. Simply fill in a title, description and budget and competitive bids come within minutes.</p>
             </div>
             <div class="col-md-3">
-                <img src=" {{url_for('static',filename='images/chose.png')}} " width="20%" alt=""> 
-                <h3> Hire a Skiller</h3>
-                <p id="para1">No project is too big or too small. We've got skillers for project of any size or budget, across several industries. </p>
+                <h3> <img src=" {{url_for('static',filename='images/chose.png')}} " width="20%" alt=""> Hire a Skiller</h3>
+                <p id="para1">No job is too big or too small. We've got skillers for jobs of any size or budget, across many skills. No project is too complex. We can get it done!</p>
             </div>
             
             <div class="col-md-3">
-                <img src=" {{url_for('static',filename='images/pay.png')}} " width="20%" alt="">
-                <h3>  Pay safely</h3>
-                <p id="para1">Only pay for projects when verifications has been duly made.</p>
+                <h3> <img src=" {{url_for('static',filename='images/pay.png')}} " width="20%" alt=""> Pay safely</h3>
+                <p id="para1">Only pay for work when it has been completed and you're satisfied with the quality using our unique payment system.</p>
             </div>
             <div class="col-md-3">
-                <img src="{{url_for('static',filename='images/help.png')}}" width="20%" alt="">
-                <h3>  Ready to Help</h3> 
+                <h3> <img src="{{url_for('static',filename='images/help.png')}}" width="20%" alt=""> Ready to Help if Need be</h3> 
 
                 <button type="button" class="btn btn-secondary"
                     data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-custom-class="custom-tooltip"
                     data-bs-title="TOur talented and dedicated team can help you resolve challenges almost as soon as they are raised.">
-                        Click to Know more...
+                        Know more...
                 </button>
             </div>
             <hr>

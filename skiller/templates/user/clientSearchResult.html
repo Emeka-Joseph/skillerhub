@@ -1,0 +1,75 @@
+  {% extends 'user/search_index.html' %}
+
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(84, 5, 5);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    } 
+    #dash2{
+      background-color:rgb(234, 233, 238);
+    }
+    div{
+      border: 0px solid black;
+    }
+    #collections{
+      border: 0px solid blue;
+    }
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+   <div class="row">
+      <div class="col-md-3" id="dash" style="border: 0px solid blue;">      
+
+        {% include 'user/client_menu.html' %}
+      </div>
+    {% if clients: %}
+        <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: rgb(233, 231, 228);">
+          <hr> 
+            <div class="row" style="display:flex; align-content:space-around;"> 
+              
+              <div class="col-md-12" style="text-align: center; color: blue;">
+                <h3 > Previous Projects </h3>
+                <p >Here are some of the explicit projects done by <span> <b> {{ deets.user_fullname }}</b></span> </p>   
+              </div>
+
+              <div class="row" id="collections" style="display: flex; justify-content:flex-start;"> 
+                  {% for p in propic %}
+                  {% if p.Album_userid==deets.user_id %}
+                  <div class="col-md-4 mb-3" id="field_container" > 
+                  
+                     <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="270" height="350">
+                  
+                  </div>    
+                   {% endif %}           
+                  {%endfor %} 
+              
+              </div>
+                          
+            </div>
+          </div>
+    {% endif %}
+          
+    </div>
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+
+        {% block javascript %} 
+        <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+    <script type="text/javascript">
+      
+    </script>
+        {% endblock %}
+</body>
+</html
+
+
+    

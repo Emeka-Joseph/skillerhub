@@ -29,7 +29,7 @@ class JoinForm(FlaskForm):
     email = StringField('Your Email:',validators=[Email(message="Hello, please enter a valid email"), DataRequired(message="your email address is needed in order to join")])
     
     password = PasswordField('password:', validators=[DataRequired(length(min=6,message='your passowrod must be at least 6 digits'))])
-    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password', message='kindly re-enter password to match')])
+    confirm_password = PasswordField('Confirm Password', validators=[EqualTo('password', message='Re-enter password to match')])
     
     submit = SubmitField('Join')
 
@@ -40,42 +40,98 @@ def home():
     id = session.get('user')
     deets = db.session.query(Users).get(id)
     allskill = Skill.query.all()
-    return render_template('user/index.html',deets=deets,allskill=allskill) 
+    allstates = State.query.all()
+    return render_template('user/index.html',deets=deets,allskill=allskill,allstates=allstates) 
 
 
-@app.route('/livesearch', methods=['POST','GET'])
-def livesearch():
-    if request.method=='GET':
-        searchbox = request.form.get('text')
-        search = "%{}%".format(searchbox)
-        #skillset = Skill.query.filter(Skill.skill_name.like(search)).all()
-        skillset = db.session.query(Skill).filter(Skill.skill_name.like(search)).all()
-        return json.dumps(skillset) 
-
-@app.route('/selectskill',methods=['POST','GET'])
-def selectskill():
-    allskill = Skill.query.all()
-    #selectbox = request.form
     
 @app.route('/search',methods=['POST','GET'])
 def search():
-    deets = db.session.query(Users).all()
-    for p in deets:
-        #alldeets=User.query.order_by(func.random()).limit(3).all()
-        #deets = Users.query.all()
-        propic = Album.query.order_by(Album.Album_userid.desc()).limit(3).all()
-        #propic = Album.query.filter(Album.Album_userid==p.user_id).order_by(Album.Album_userid.desc()).all()
-        displays = DisplayPictures.query.all() 
-        """for d in display:
-            dis = db.session.query(DisplayPictures).filter(DisplayPictures.dp_userid!=None).order_by(DisplayPictures.dp_userid.desc()).limit(3)
-            displays = dis"""
-        #for t in propics
-        skill = Skill.query.all() 
-        if request.method=='POST':
-            skill_in_need = request.form.get('skill')
-            skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
-            return render_template('user/search.html',deets=deets,displays=displays,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random,propic=propic)
-        
+    allstates = State.query.all()
+    skill = Skill.query.all()
+    allskill = Skill.query.all()
+     
+    if request.method=='POST':
+        deets = db.session.query(Users).all()
+        beta = db.session.query(Users).first()
+        searchdpone = beta.user_dpone
+        skill_in_need = request.form.get('skill')
+        search_state = request.form.get('statename')
+        skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
+        if skill_in_need=='' or skill_in_need==None:
+             return redirect('/',allstates=allstates,skill=skill,allskill=allskill)
+        else:
+            return render_template('user/search.html',deets=deets,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random, beta=beta,searchdpone=searchdpone,search_state=search_state,allstates=allstates,allskill=allskill)
+    
+
+
+@app.route('/searchbyloc',methods=['POST','GET'])
+def searchbyloc():
+    #displays = DisplayPictures.query.all() 
+    #for t in propics
+    allstates = State.query.all()
+    skill = Skill.query.all() 
+    allskill = Skill.query.all()
+  
+    if request.method=='POST':
+        deets = db.session.query(Users).all()
+        beta = db.session.query(Users).first()
+        searchdpone = beta.user_dpone
+        skill_in_need = request.form.get('skill')
+        search_state = request.form.get('statename')
+        skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
+        if skill_in_need=='' or skill_in_need==None:
+             return redirect('/',allstates=allstates,skill=skill)
+        else:
+            return render_template('user/search_location.html',deets=deets,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random, beta=beta,searchdpone=searchdpone,search_state=search_state,allstates=allstates, allskill=allskill)
+
+
+
+
+
+
+@app.route('/client/<int:cid>,<st>')
+def client_search(cid,st):
+    clients = db.session.query(Users).filter(Users.user_id==cid).first()
+    st_state = db.session.query(Users).filter(Users.user_state==st).first()
+    deets = db.session.query(Users).get(cid)
+    username=deets.user_fullname
+    propic = Album.query.order_by(Album.album_id.desc()).all()
+    disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
+    #db.session.query(Album).all()
+    album_userid = db.session.query(Users).get(cid)
+    dp_userid = db.session.query(Users).get(cid)
+    return render_template('user/clientSearchResult.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients,st_state=st_state)
+
+
+@app.route('/client/<int:cid>,<st>')
+def searchResult(cid,st):
+    clients = db.session.query(Users).filter(Users.user_id==cid).first()
+    st_state = db.session.query(Users).filter(Users.user_state==st).first()
+    deets = db.session.query(Users).get(cid)
+    username=deets.user_fullname
+    propic = Album.query.order_by(Album.album_id.desc()).all()
+    disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
+    #db.session.query(Album).all()
+    album_userid = db.session.query(Users).get(cid)
+    dp_userid = db.session.query(Users).get(cid)
+    return render_template('user/clientSearchResult.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients,st_state=st_state)
+
+
+
+@app.route('/clientstate/<int:cid>')
+def searchBySkill(cid):
+    clients = db.session.query(Users).filter(Users.user_id==cid).first()
+    deets = db.session.query(Users).get(cid)
+    username=deets.user_fullname
+    propic = Album.query.order_by(Album.album_id.desc()).all()
+    disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
+    #db.session.query(Album).all()
+    
+    album_userid = db.session.query(Users).get(cid)
+    dp_userid = db.session.query(Users).get(cid)
+    #search_state = db.session.query(Users).filter(Users.user_state==loc).first()
+    return render_template('user/search_location.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients)        
    
 @app.route('/join')
 def join():
@@ -114,7 +170,7 @@ def register():
             #to get the id of the record that has just been inserted
             """userid=u.user_id     
             session['user']=userid"""
-            flash('Thank you for joining the community, kindly login to continue')
+            flash('Thank you for joining the community, login to continue')
             return redirect(url_for('user_login'))
         else:
             flash('You must complete all the fields to signup OR check that your password match is correct')
@@ -127,8 +183,7 @@ def contact():
     if id==None:
         return redirect(url_for('user_login'))
     else:
-        if request.method=='GET':
-            
+        if request.method=='GET': 
             deets = db.session.query(Users).filter(Users.user_id==id).first()
             allstates = State.query.all()
             return render_template('user/contact.html',deets=deets,allstates=allstates)
@@ -146,9 +201,6 @@ def contact():
             flash('contact details successfully updated')
             return redirect(url_for('user_dashboard'))
         
-
-
-
 @app.route('/login', methods=['GET','POST'])
 def user_login():
     if request.method=='GET':
@@ -247,7 +299,7 @@ def delete(id):
 def user_profile():
     id = session.get('user')
     if id ==None:
-        return redirect('user/user_login.html')
+        return render_template('user/user_login.html')
     else:
         if request.method =='GET':
             deets = db.session.query(Users).filter(Users.user_id==id).first()
@@ -347,7 +399,7 @@ def displaypics():
                         dpid = db.session.query(Users).get(session['user'])
                         
                         #dpid.user_dp1.dp_userid=id
-                        dpid.user_dp1=newname
+                        dpid.user_dpone=newname
                         db.session.commit()
                         flash('File uploaded successfully')
                         return redirect(url_for('user_dashboard'))
@@ -367,9 +419,9 @@ def displaypics2():
             deets = db.session.query(Users).filter(Users.user_id==id).first()
             return render_template('user/displaypics2.html',deets=deets)
         else:
-                pics = request.files['display_picture2'] 
-                filename = pics.filename #original filename
-                filetype = pics.mimetype
+                file = request.files['display_picture2'] 
+                filename = file.filename #original filename
+                filetype = file.mimetype
                 allowed = ['.png', '.jpg','.jpeg']
                 if filename !='':
                     #upload
@@ -377,10 +429,10 @@ def displaypics2():
                     #import os on line 1
                     if ext.lower() in allowed:
                         newname = generate_name()+ext
-                        pics.save("skiller/static/uploads/dp/"+newname)
+                        file.save("skiller/static/uploads/dp/"+newname)
                         dpid = db.session.query(Users).get(session['user'])
 
-                        dpid.user_dp2=newname
+                        dpid.user_dptwo=newname
                         db.session.commit()
                         flash('File uploaded successfully')
                         return redirect(url_for('user_dashboard'))
@@ -414,7 +466,7 @@ def displaypics3():
                         pic3.save("skiller/static/uploads/dp/"+newname)
                         dpid = db.session.query(Users).get(session['user'])
                      
-                        dpid.user_dp3=newname
+                        dpid.user_dpthree=newname
                         db.session.commit()
                         flash('File uploaded successfully')
                         return redirect(url_for('user_dashboard'))

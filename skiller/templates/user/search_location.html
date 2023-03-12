@@ -1,0 +1,170 @@
+{% extends 'user/search_index.html' %}
+
+{% block header %}
+<style>
+  #dash{
+    background-color: rgb(84, 5, 5); 
+    border: 0px dashed yellow;
+  }
+  .album{
+    min-height: 200px;
+    border: 0px solid blue;
+  } 
+  #dash2{
+    background-color:rgb(234, 233, 238);
+    border: 0px dashed yellow;
+  }
+  div{
+    border: 0px solid black;
+  }
+
+
+  #collections  {
+    background-color:rgb(249, 240, 225);
+     border: 1px dashed yellow;
+     
+
+  }
+
+  
+
+</style>
+{% endblock header %} 
+
+{% block search_button %} 
+
+ <div class="row" >
+    <div class="col-md-3" id="dash">
+      <!--<div class="form-floating mb-5" style="border: 1px solid black; height: 100px; width: 100px;    align-self:flex-start; background-color: silver;">
+        <span >profile picture</span>
+      </div>-->
+      {% if session['user']==None and session['user']!=None %}
+        {% if deets: %}
+          {% if deets.user_pix !='' and deets.user_pix != None  %}
+              <img src="{{url_for('static', filename='uploads/'+deets.user_pix)}}" alt="mdo" width="70" height="70" class="rounded-circle">
+              {% else %}
+              <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+          {% endif %}
+              {% else %}
+            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+        {% endif %}
+      {% endif %}  
+
+{% if session['user']!=None %}
+          <p style="color: yellow;" class="mt-4"> <b> Filter Search by Locatoin (State) {{ deets.user_fullname }}</b></p> 
+
+          <form action="{{url_for('searchbyloc')}}" method="POST">
+            <label for=""> Filter Results by location </label>
+            <!--<input type="text" id="searchskill" name="text"  style="text-align: center;" placeholder="search for skill/talent" class="form-control">
+            <p id="datalist"></p> -->
+         <select name="skill" id="skill"   class="form-control"> 
+                <option value="Select Skill">Search for skills</option> 
+            {% for s in allskill %}
+                <option value="{{s.skill_name}}">{{ s.skill_name }}</option>
+            {% endfor %}
+        </select> 
+
+        <select name="statename" id="statename"       class="form-control"> 
+            <!---for states-->
+            <option value="Select State">Filter Search by Location</option>
+            {% for s in allstates %}
+            <option value="{{s.state_name}}">{{ s.state_name }}</option>
+            {% endfor %}
+      </select>
+            <button class="btn btn-primary"> Search</button>
+        </form>
+
+
+     {# {% include 'user/search_menu.html' %}#}
+    </div>
+          
+      <div class="col-md-9" >
+        <hr>
+          <div class="row mt-1" style="display:flex; align-content:space-around;"> 
+            
+            <div class="col-md-12" style="text-align: center; border:0px dotted yellow">
+              <h3 > Previous Projects </h3>
+              <p >Here are some of the explicit projects successfully carried out 
+              
+            {% if deets: %} 
+              {% if skill: %}
+                {% if allstates %} 
+                  {% for i in deets %}
+                    {% if skill_in_need in i.user_skill and search_state in i.user_state %}
+                        <div class="col-md-12 my-3"> 
+                          <a href="{{url_for('searchResult',cid=i.user_id,st=i.user_state)}}" style="text-decoration: none; color: black;" > 
+                        <div class="row"  id="collections">
+                            <div class="col-md-3">
+                              {% if i.user_pix !='' and i.user_pix != None  %}
+                                <img src="{{url_for('static', filename='uploads/'+i.user_pix)}}" alt="mdo" width="70" height="70" class="rounded-circle">
+                                {% else %}
+                                <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+                              {% endif %}
+                              <p>{{i.user_fullname}}  </p> 
+                               <p style="color:black; font-size: 1em"> <b> {{i.user_skill}}</b> </p>
+                          </div>
+                          
+                          <div class="col-md-3"> 
+                            {% if i.user_dpone !='' and i.user_dpone != None  %}
+                            <img src="{{url_for('static', filename='uploads/dp/'+i.user_dpone)}}" alt="mdo" width="170" height="200">
+                            {% else %}
+                            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70">
+                          {% endif %}
+                          </div>
+                          
+                          <div class="col-md-3"> 
+                            {% if i.user_dptwo !='' and i.user_dptwo != None  %}
+                            <img src="{{url_for('static', filename='uploads/dp/'+i.user_dptwo)}}" alt="mdo" width="170" height="200">
+                            {% else %}
+                            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70">
+                          {% endif %}
+                          </div>
+                          
+                          <div class="col-md-3"> 
+                            {% if i.user_dpthree !='' and i.user_dpthree != None  %}
+                            <img src="{{url_for('static', filename='uploads/dp/'+i.user_dpthree)}}" alt="mdo" width="170" height="200">
+                            {% else %}
+                            <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="120" height="150">
+                          {% endif %}      
+                          </div> 
+                          <div class="col-md-12"> 
+                               <p>This is a little introduction of myself, my skill and my experience</p>
+                          </div>
+                      </div> </a>
+                        </div>  
+                    {% endif %}                                    
+                  {% endfor %}
+                {% endif %}  
+              {% endif %}
+            {% endif %}  
+           
+
+            </div>
+            {% with c=get_flashed_messages() %}
+          {% if c %}
+              {% for msg in c %}
+              <div class="alert alert-info col-md-5">{{ msg }}</div>
+              {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+                  
+          </div>
+        </div>
+        
+  </div>
+  
+{% endif %}
+{% endblock %}
+{% block banner_display %}   {% endblock %}
+{% block card_details %}   {% endblock %}
+ {% block banner %}   {% endblock %}
+
+      {% block javascript %} 
+      <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+  <script type="text/javascript">
+    
+  </script>
+      {% endblock %}
+</body>
+</html>

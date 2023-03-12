@@ -11,72 +11,69 @@
 </head>
 <body>
     
-<div class="list-group list-group-flush my-3" style="color: white;">
+<div class="list-group list-group-flush my-3" style="color: white; text-align:center">
     <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text active">
-        <i class="fas fa-tachometer-alt me-2"  ></i>Dashboard</a>
+        <i class=" btn  btn-info fa-sharp fa-solid fa-eye"> <b> Dashboard </b> </i>  </a>
 
 
-    <a href="{{url_for('user_profile')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
-        <i class="fa-tachometer fa-file"></i>  Update Profile Picture</a>
+    <a href="{{url_for('user_profile')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light"> 
+        <i class=" btn  btn-outline-info fa-solid fa-eye"> <b> Update Profile Picture </b> </i>  </a>
     
 
-    <a href="{{url_for('skill')}}" class=" list-group-item-action bg-transparent second-text fw-bold text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-tachometer-alt me-2"> </i> Skill </a> 
+    <a href="{{url_for('skill')}}" class=" list-group-item-action bg-transparent second-text fw-bold text-light mt-3" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"><b>Skill </b> </i></a> 
     
      
-    <p style="color:yellow">{{deets.user_skill}}</p>     
-    <p style="color:yellow"> {{ hint }}  </p>  
+    <p style="color:rgb(253, 253, 251)"> <b>{{deets.user_skill}}</b> </p>     
+    <p style="color:rgb(251, 251, 249)"> <b>{{ hint }}</b>  </p>  
 
             <hr sytle="border:3px solid white; color:brown">
 
-    <a href="{{url_for('album')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
-        <i class="fa-sharp fa-solid fa-eye"></i> Portfolio </a>
+    <a href="{{url_for('album')}}" class=" list-group-item list-group-item-action bg-transparent second-text fw-bold text-light mb-3">
+        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"> <b> Click to Add To Catalogue </b> </i>  </a>
 
     <a href="{{url_for('contact')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
-        <i class="fa-solid fa-share-from-square "></i> Contact Address </a>
+        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"> <b> Contact Address </b> </i> </a>
 
         {% if session.get('user')!=None or session.get('client')!=None %}
-        <p>{{deets.user_address}}  </p>
-        <p> {{deets.user_state}} </p>
-        <p> {{deets.user_phone}} </p>
+         <strong>{{deets.user_address}}</strong> 
+         <strong>{{deets.user_state}} State</strong> 
+        <b>{{deets.user_phone}}</b> 
         {% else %}
 
-        <p> Kindly signup/login to view the contact details  </p>
+        <p>  signup/login to view the contact details  </p>
         {% endif %}
 
         {% if session['user']!=None %}
 
-        <a href="{{url_for('user_profile')}}" class="dash-menu list-group-item list-group-item-action bg-transparent second-text fw-bold text-light ">
-            <i  class=" dash-menu fa-tachometer fa-file btn btn-primary border-yellow "></i>  </a>
-            <p> <b>Chose three(3) best pictures To Appear on your Search</b> </p>
-            <div class="row">
+            <h6 class="mt-5"> <b>Choose three(3) best pictures To Appear on Your Profile Search</b> </h6>
+            <div class="row" >
                 <div class="col">
-                    <a href="{{url_for('displaypics')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm btn-primary btn-outline-warning" id="dash_menu2">Picture1</i>  </a>
+                    <a href="{{url_for('displaypics')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning" id="dash_menu2">Picture1</i>  </a>
+                </div>
+                <div class="col" style="display: flex; justify-content: center;">
+                    <a href="{{url_for('displaypics2')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning" id="dash_menu2">Picture2</i>  </a>
                 </div>
                 <div class="col">
-                    <a href="{{url_for('displaypics2')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm btn-primary btn-outline-warning" id="dash_menu2">Picture2</i>  </a>
-                </div>
-                <div class="col">
-                    <a href="{{url_for('displaypics3')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm btn-primary btn-outline-warning" id="dash_menu2">Picture3</i>  </a>
+                    <a href="{{url_for('displaypics3')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning mb-2" id="dash_menu2">Picture3</i>  </a>
                 </div>
             </div>      
 
-            <div class="row" style="border: 1px solid blue; display: flex; justify-content: space-between; min-height: 100px;">
+            <div class="row" style="border: 0px solid blue; display: flex; justify-content: space-between; min-height: 100px;">
                 <div class="col-md-4">
                     {% if deets: %}
-                    {% if deets.user_dp1 !='' and deets.user_dp1 != None  %}
-                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dp1)}}" alt="mdo" width="100" height="120" >
-                        {% else %}
-                          <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+                    {% if deets.user_dpone !='' and deets.user_dpone != None  %}
+                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dpone)}}" alt="mdo" width="100" height="120" >
+                        
                    {% endif %}     
                   {% endif %}
                 </div>
                 <div class="col-md-4">
 
                     {% if deets: %} 
-                    {% if deets.user_dp2 !='' and deets.user_dp2 != None  %}
-                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dp2)}}" alt="mdo" width="100" height="120" >
-                        {% else %}
-                          <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+                    {% if deets.user_dptwo !='' and deets.user_dptwo != None  %}
+                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dptwo)}}" alt="mdo" width="100" height="120" >
+                        
                    {% endif %}     
                   {% endif %}
 
@@ -84,10 +81,9 @@
                 <div class="col-md-4">
                     
                     {% if deets: %} 
-                    {% if deets.user_dp3 !='' and deets.user_dp3 != None  %}
-                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dp3)}}" alt="mdo" width="100" height="120" >
-                        {% else %}
-                          <img src="{{url_for('static', filename='uploads/avatar.jpg')}}" alt="mdo" width="70" height="70" class="rounded-circle">
+                    {% if deets.user_dpthree !='' and deets.user_dpthree != None  %}
+                          <img src="{{url_for('static', filename='uploads/dp/'+deets.user_dpthree)}}" alt="mdo" width="100" height="120" >
+                        
                    {% endif %}     
                   {% endif %}
                 </div>
@@ -99,7 +95,7 @@
             
             <hr style="color:aliceblue">
     <a href="{{url_for('user_logout')}}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold" style="display:inline;">
-        <i class="fa-sharp fa-solid fa-power-off"></i> <b>Logout</b> </a>
+        <i class=" btn btn-danger btn-outline-warning fa-sharp fa-solid fa-power-off"><b>Logout</b></i>  </a>
 
       {% endif %}
 

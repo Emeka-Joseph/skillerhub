@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  
+    </style>
+</head>
+<body>
+    
+<div class="list-group list-group-flush my-3" style="color: white;">
+    <p style="color:yellow"> <b style="color:aliceblue">Name:    </b> <strong>{{deets.user_fullname}}</strong> </p>     
+    <p style="color:yellow"> <b style="color:aliceblue">Skill:    </b> <strong>{{deets.user_skill}}</strong> </p>     
+    <p style="color:yellow"> {{ hint }}  </p>  
+
+            <hr sytle="border:3px solid white; color:brown">
+
+    
+
+        {% if session.get('user')!=None or session.get('client')!=None %}
+        <p style="color:rgb(253, 253, 251)"> <b> Address:</b> </p>
+        <p style="color:yellow">{{deets.user_address}}  </p>
+        <p style="color:yellow"> {{deets.user_state}} State</p>
+        <p style="color:yellow"> {{deets.user_phone}} </p>
+        {% else %}
+
+        <p> Kindly signup/login to view the contact details  </p>
+        {% endif %}
+
+        
+
+        
+</div>
+</body>
+</html>
+
+
+            
