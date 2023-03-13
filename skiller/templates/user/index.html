@@ -117,7 +117,7 @@
         <div class="row mt-5" id="rowbut">
             <div class="col-md-5">
                 <form action="{{url_for('search')}}" method="POST">
-                    <label for=""> Filter Results by location </label>
+                    
                     <!--<input type="text" id="searchskill" name="text"  style="text-align: center;" placeholder="search for skill/talent" class="form-control">
                     <p id="datalist"></p> -->
                  <select name="skill" id="skill"   class="form-control"> 
@@ -142,7 +142,7 @@
                 <p class="firstp">Networking the right way that soots our environment</p>
             </div>
             <div class="col-md-4 ban1">
-                <img src="{{url_for('static',filename='images/skill2.png')}}" width="98%" alt="">
+                <img src="{{url_for('static',filename='images/skill2.png')}}" width="65%" alt="">
                 
             </div>
         </div>
@@ -157,7 +157,7 @@
                           <div class="card-body">
                             <h5 class="card-title">Programming & Tech</h5>
                             <p class="card-text">Find the best software developers to bring out your dream ideas to life.  </p>
-                            <a href="" class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to see more...</a>
+                            
                           </div>
                         </div>
                     <div class="col-md-4 card">
@@ -165,7 +165,6 @@
                           <div class="card-body">
                             <h5 class="card-title">Make-up Artist</h5>
                             <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
-                            <a href="" class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to see more...</a>
                           </div>
                         </div>
                         <div class="col-md-4 card">
@@ -173,9 +172,7 @@
                           <div class="card-body">
                             <h5 class="card-title">House Painting
                             </h5>
-                            <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>
-                            <button class="btn btn-lg btn-outline-warning text-black" id="cardbut">Click to learn more...</button>
-                            
+                            <p class="card-text">Making you look extravagantly beautiful is our business. Do you desire to upgrade </p>                            
                           </div>
                         </div>
                       
@@ -222,30 +219,22 @@
             </div>
             <hr>
         </div>
-
-
         <div class="row banner" >
 
             <div class="col-md-10">
-                <h3 id="heading1" style="color:rgb(43, 89, 195);">WHY SKILLER?</h3>
+                <h3 id="heading1" style="color:rgb(43, 89, 195);">WHY SKILLER?</h3> 
             </div>
-            <div class="col-md-3">
-                <h2> <img src=" {{ url_for('static',filename='images/portfolio.png')}}  " width="20%" alt="">
-                    View skiller's Portfolio/profile</h2>
+            <div class="col-md-6">
+                <img src=" {{ url_for('static',filename='images/portfolio.png')}}  " width="20%" alt="">
+                <h3> 
+                    View skiller's Portfolio/profile</h3>
                     <p id="para1">Find professionals and highly skilled individuals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
             </div>
-            <div class="col-md-3">
-                <h3> <img src=" {{ url_for('static',filename='images/bid.png')}} " width="20%" alt=""> Fast Bids</h3>
-                <p id="para1">Receive free quotes from our talented skillers fast. 90% of projects get bid on within 3 minutes.</p>
-            </div>
-            
-            <div class="col-md-3">
-                <h3> <img src=" {{ url_for('static',filename='images/track.png')}} " width="20%" alt=""> Monitor Progress</h3>
-                <p id="para1">Skiller.com has a very large pool of quality freelancers nation-wide. Over 1million skilld freelancers to choose from.</p>
-            </div>
-            <div class="col-md-3">
-                <h3> <img src=" {{ url_for('static',filename='images/quality3.png')}} " width="30%" alt=""> Quality Work</h3>
-                <p id="para1">Keep up-to-date and on-the-go with our time tracker, and mobile app. Always know what freelancers are up to. </p>
+           
+            <div class="col-md-6">
+                <img src=" {{ url_for('static',filename='images/quality3.png')}} " width="30%" alt=""> 
+                <h3> Quality Work</h3>
+                <p id="para1">On Skill to One Individual. We are not jack of all and master of none. You can always find someone that is skilled in what you need, and exceptionally good at that  </p>
             </div>
             <hr>
         </div>
@@ -256,33 +245,22 @@
     {% block footer %}
         <div class="row">
             <div class="col-md-2 futer1"> 
-                <img src=" {{ url_for('static',filename='images/logoc.png')}} " width="25%" alt="">
+                <a href=" {{url_for('home')}} "><img src=" {{ url_for('static',filename='images/logoc.png')}} " width="25%" alt=""> </a>
                 <hr>
                 <p class="futer"> <a href="" class="futer"> <b>Help and Support</b></a>  <br>
                     
                 </p>
             </div>
-            <div class="col-md-2 futer1"> 
-                
-                <p class="futer"> <a href="" class="futer"> <b>Skiller</b></a>  </p>
-                <p class="futer"    >
-                    <a href="" class="futer"> Digital</a>  <br>
-                    <a href="" class="futer"> Artesan</a>
-                </p>
-            </div>
+           
             <div class="col-md-3 futer1"> 
                 <p class="futer"> <a href="" class="futer"> <b>About Us</b></a>  </p>
                 <p class="futer">
                     <a href="" class="futer"> How it works</a>  <br>
                     <a href="" class="futer"> Careers</a>
                     <br>
-                    <a href="" class="futer"> Security</a>
-                    <br>
                     <a href="" class="futer"> Investment</a>
                     <br>
-                    <a href="" class="futer"> Research & Analysis</a>
-                    <br>
-                    <a href="" class="futer"> News</a>
+                    <a href="" class="futer"> Blog</a>
         
                 </p>
             </div>
@@ -296,21 +274,20 @@
                     <br>
                     <a href="" class="futer"> Fees and Charges</a>
                     <br>
-                    <a href="" class="futer"> Partnership </a>
         
                 </p>
             </div>
-            <div class="col-md-2 futer1"> 
+            <div class="col-md-4 futer1"> 
                 <p> <a href="" class="futer"> <b>Contact</b> </a>  </p>
                 <p >
                     <a href="" class="futer"> Contact Us</a>  <br> <br>
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="10%" alt=""></a>
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="15%" alt=""></a>
                     
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="10%"></a>
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="15%"></a>
                     
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/instagram.png')}}" alt="" width="10%"></a>
+                    <a href="" class="social"> <img src="{{url_for('static',filename='images/instagram.png')}}" alt="" width="15%"></a>
                     
-                    <a href="" class="social"> <img src="  {{url_for('static',filename='images/twitter.png')}} " alt="" width="10%"></a>
+                    <a href="" class="social"> <img src="  {{url_for('static',filename='images/twitter.png')}} " alt="" width="15%"></a>
         
                 </p>
             </div>

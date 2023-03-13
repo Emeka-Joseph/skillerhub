@@ -59,7 +59,7 @@ def search():
         search_state = request.form.get('statename')
         skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
         if skill_in_need=='' or skill_in_need==None:
-             return redirect('/',allstates=allstates,skill=skill,allskill=allskill)
+             return redirect('/')
         else:
             return render_template('user/search.html',deets=deets,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random, beta=beta,searchdpone=searchdpone,search_state=search_state,allstates=allstates,allskill=allskill)
     
@@ -81,7 +81,7 @@ def searchbyloc():
         search_state = request.form.get('statename')
         skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
         if skill_in_need=='' or skill_in_need==None:
-             return redirect('/',allstates=allstates,skill=skill)
+             return redirect('/')
         else:
             return render_template('user/search_location.html',deets=deets,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random, beta=beta,searchdpone=searchdpone,search_state=search_state,allstates=allstates, allskill=allskill)
 
