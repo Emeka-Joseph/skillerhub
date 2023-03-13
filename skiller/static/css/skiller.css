@@ -12,10 +12,11 @@ body{
 }
 .container{
     display: flex;
+    border: 0px solid blue;
 }
 
 div{
-    border: 1px solid red;
+    border: 0px solid red;
     text-align:center;
     width: 100%;
 
@@ -104,9 +105,15 @@ div{
     display: flex;
     justify-content: left;
 }
+
+#justfooter{
+    position:absolute;
+    margin-bottom: 0px;
+}
 .futer1{
     background-color: black;
     color: white;
+    width: 100%;
 
     text-decoration: none;
 }

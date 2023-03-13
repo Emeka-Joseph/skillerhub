@@ -1,0 +1,94 @@
+{% extends 'user/search_index.html' %}
+ 
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(84, 5, 5);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    } 
+    #dash2{
+      background-color:rgb(234, 233, 238);
+    }
+    div{
+      border: 0px solid black;
+    }
+    #collections{
+      border: 0px solid blue;
+    }
+    .hiw {
+      font-size: 1.2em;
+    }
+    ul{
+      font-size: 1.2em;
+    }
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+  <div class="col-md-3" id="dash" style="border: 0px solid blue;">      
+
+  {% include 'user/general_menu.html' %}
+  </div>
+      <div class="col-md-9" style="background-color: antiquewhite; color: black; text-align: justify; padding: 30px; ">
+            
+      <h2 class="mt-3"> How Skillerhubs Works </h2> 
+        
+        <p class="hiw"> Skillerhubs is a platform for the display of skills, both as an enterpreneur or an organisation. This display can come in different formats but most graphical. The unique term used for an enterpreneur or an organisation in the Skillerhubs Platform is called "Skiller". As a visitor to the platform, you would be able to search for skillers/skills and as well as filter your searches by location (States for now) and get a desired result but would not be able to view their contact details untill you join the community.
+          <br> <br>
+          The platform is more like a Digital Showroom for the display of the projects you have successfully completed in anticipation of attracting more clients/customers. <br>
+          Skillerhubs is not just for the skilled in terms of craftmaship, but also in terms of vocation. Once you  are very skillful in rendering a service and selling of best-grade and trusted product with exceptional customer-services, you are welcome 
+          <br>
+        
+        </p> 
+  
+      <h2> Join </h2>
+
+        <p class="hiw"> To join is absolutely free for now. When you sign up, you automatically become a user. To become a Skiller, follow the guidlines and register/update your profile in your dashboard page. When Joining/Registering as a Skiller, graphical representations of previously completed projects are displayed in the skiller's dashboard which would be seen while every other users wants to view the profile of the skiller in quote.
+        <br> <br>
+        It is also important to note that if any account violates the policies and guidlines of the platform, Skillerhubs Admin reserves the right to suspend/delete such account with or without prior notice. 
+          <br><br>
+        <a href="">Learn more with our Terms of Service.</a>
+        </p>
+  
+
+ 
+      <ul> <strong>The best skillers generally:</strong>
+        <li>Make sure that their skiller profile is 100% complete </li>
+        <li>Make sure that their Personal Introduction are well-written and describe the skill/services they provide in detail</li>
+        <li>Make sure that the work samples chosen represent their skills accurately </li>
+        <li><p> <ul>
+          <b>Tips for the skillers:</b> 
+          <li>Increase your chances of getting contacted by displaying your best previously completed projects </li>
+          <li> Really understand the user's needs by showing them how your skills can help them achieve their goals, and use effective communication throughout to ensure constant compliance.</li>
+        </ul> </p></li>
+      </ul>
+ 
+
+      <h3>Ratings</h3>
+        <p class="hiw"> If your customers'/clients' expectations are met, or hopefully exceeded, you will receive a good rating from them—resulting in more business in the future.</p> 
+
+      <h3>Payment</h3>
+        <p class="hiw">For now, Skillerhubs does not take a role in the transaction between the skillers and clients. Hence, user, customers/clients are strongly adviced to take positive measures to ensure that their payments are protected and that they get what they ordered. 
+          <a href="">Fo more, see our Terms of Service.</a></p>
+        </div>
+  
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+        {% block javascript %} 
+        <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+    <script type="text/javascript">
+      
+    </script>
+        {% endblock %}
+</body>
+</html
+
+
+    

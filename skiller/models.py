@@ -6,13 +6,14 @@ class Users(db.Model):
     user_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
     user_fullname = db.Column(db.String(100),nullable=False)
     gender= db.Column(db.String(100),nullable=False)
-    user_email = db.Column(db.String(120)) 
+    user_email = db.Column(db.String(120), unique=True) 
     user_skill = db.Column(db.String(100),nullable=False)
     user_phone=db.Column(db.String(120),nullable=True) 
     user_pix=db.Column(db.String(120),nullable=True) 
     user_dpone=db.Column(db.String(120),nullable=True) 
     user_dptwo=db.Column(db.String(120),nullable=True)
     user_dpthree=db.Column(db.String(120),nullable=True)
+    
 
     user_datereg=db.Column(db.DateTime(), default=datetime.utcnow)
     user_state=db.Column(db.String(100), nullable=True)

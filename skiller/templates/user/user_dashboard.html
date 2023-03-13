@@ -50,8 +50,7 @@
             <div class="row" style="display:flex; align-content:space-around;"> 
               
               <div class="col-md-12" style="text-align: center;">
-                <h3 > Previous Projects </h3>
-                <p >Here are some of the explicit projects done by <span> <b> {{ deets.user_fullname }}</b></span> </p>   
+                <h3 class="my-4"> Previous Projects by {{ deets.user_fullname }}</h3>   
               </div>
 
               {% with c=get_flashed_messages() %}
@@ -67,7 +66,7 @@
                   {% if p.Album_userid==session['user'] %}
                   <div class="col-md-4" id="field_container" > 
                   
-                     <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="250" height="350">
+                     <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="250" height="350" id="imgcheck">
 
       
 

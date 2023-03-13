@@ -47,7 +47,7 @@
               <div class="row"> 
               <div class="col-md-6">
                 <label for="password" class="form-label"> Password </label>
-                <input type="password" name="password" id="pwd" placeholder="enter password" class="form-control" required>
+                <input type="password" name="password" id="pwd" placeholder="enter your password" class="form-control" required>
     
               </div>
               <div class="col-md-6">
@@ -57,10 +57,11 @@
               </div>
             </div> 
               <div>
-              <input type="checkbox" name="" id="checkbox">
-              <span style="display: block">Agree to terms and conditions </span>
+              <p>
+                <span style="display: block"> <input type="checkbox" id="justcheck"> Agree to terms of Service  <a href=""> click to view...</a></span>
+              </p>
     
-              <button class="btn btn-primary btn-lg mb-3">signup</button>
+              <button class="btn btn-primary mb-3" id="btn" disabled>Signup</button>
               <span>Already have account? <a href="{{url_for('user_login')}}">:Login</a></span>
             </div>
           
@@ -73,5 +74,32 @@
   {% block banner_display %}  {% endblock %}
   {% block card_details %}   {% endblock %}
    {% block banner %}   {% endblock %}
-  
-    
+   {% block footer %}  
+    {{super()}}
+   {% endblock footer %}
+
+   {% block javascript %}
+   <script src="{{url_for('static',filename='jquery.min.js')}}"></script> 
+   <script type="text/javascript">
+       
+  $(document).ready(function(){
+    $('#justcheck').click(function(){
+   
+    var c = $(this).prop('checked')
+
+      if(c == true){
+     
+        $('#btn').removeAttr('disabled')
+    } else{
+      $('#btn').attr('disabled', 'disabled')
+   }
+
+})
+
+})
+
+       </script>
+       {% endblock javascript %}
+   
+</body>
+</html

@@ -3,7 +3,7 @@
   {% block search_button %} 
 
   
-  <div class="row" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
+  <div class="row mb-5" id="rowform" style="display: flex; justify-content: center; border: 1px solid; border: 0px solid blue">
     <div class="col-md-4 mt-5" id="signupform" style="background-color: rgb(13, 121, 121);background-color: rgb(198, 197, 91);">
       {% with c=get_flashed_messages() %}
       {% if c %}
@@ -36,10 +36,6 @@
                 </div>
                 </div>
           </div>
-          
-        
-          
-      
       </form>
 
     </div>
@@ -47,5 +43,19 @@
   {% block banner_display %}  {% endblock %}
   {% block card_details %}   {% endblock %}
    {% block banner %}   {% endblock %}
+   {% block footer %}  
+   {{super()}}
+  {% endblock footer %}
+
+  {% block javascript %}
+  <script src="{{url_for('static',filename='jquery.min.js')}}"></script> 
+  <script type="text/javascript">
+      
+ 
+
+      </script>
+      {% endblock javascript %}
   
+</body>
+</html
     

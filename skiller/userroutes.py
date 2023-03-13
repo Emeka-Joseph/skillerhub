@@ -87,9 +87,6 @@ def searchbyloc():
 
 
 
-
-
-
 @app.route('/client/<int:cid>,<st>')
 def client_search(cid,st):
     clients = db.session.query(Users).filter(Users.user_id==cid).first()
@@ -121,17 +118,15 @@ def searchResult(cid,st):
 
 @app.route('/clientstate/<int:cid>')
 def searchBySkill(cid):
+    allskill = db.session.query.all()
     clients = db.session.query(Users).filter(Users.user_id==cid).first()
     deets = db.session.query(Users).get(cid)
     username=deets.user_fullname
     propic = Album.query.order_by(Album.album_id.desc()).all()
     disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
-    #db.session.query(Album).all()
-    
     album_userid = db.session.query(Users).get(cid)
     dp_userid = db.session.query(Users).get(cid)
-    #search_state = db.session.query(Users).filter(Users.user_state==loc).first()
-    return render_template('user/search_location.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients)        
+    return render_template('user/search_location.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients,allskill=allskill)        
    
 @app.route('/join')
 def join():
@@ -175,6 +170,17 @@ def register():
         else:
             flash('You must complete all the fields to signup OR check that your password match is correct')
             return redirect(url_for('join'))
+
+@app.route('/howItWorks')
+def howItWorks():
+    deets = db.session.query(Users).all()
+    return render_template('user/how_it_works.html',deets=deets)
+
+
+@app.route('/aboutus')
+def aboutus():
+    deets = db.session.query(Users).all()
+    return render_template('user/about_us.html',deets=deets)
 
 
 @app.route('/contact', methods=['GET','POST'])

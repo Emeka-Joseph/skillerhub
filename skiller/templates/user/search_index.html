@@ -76,7 +76,7 @@
                 <a href=" {{url_for('home')}} "> <img src=" {{url_for('static',filename='images/mainlogo5.png')}} " width="25%" height="" alt="logo"> </a>
             </div>
             <div class="col-md-3">
-                <a href="" class="nalink" style="text-decoration:none; color:  rgb(249, 249, 250);"> <b>HOW IT WORKS</b>  </a> 
+                <a href="{{url_for('howItWorks')}}" class="nalink" style="text-decoration:none; color:  rgb(249, 249, 250);"> <b>HOW IT WORKS</b>  </a> 
             </div>
             <div class="col-md-3">
                 <a href="#" class="nalink" style="text-decoration: none; color:  rgb(254, 254, 254);"> <b> ABOUT </b>  </a>
@@ -246,68 +246,56 @@
 
         <!--Footer-->
     {% block footer %}
-        <div class="row">
-            <div class="col-md-2 futer1"> 
-                <img src=" {{ url_for('static',filename='images/logoc.png')}} " width="25%" alt="">
-                <hr>
-                <p class="futer"> <a href="" class="futer"> <b>Help and Support</b></a>  <br>
-                    
-                </p>
-            </div>
-            <div class="col-md-2 futer1"> 
+    <div class="row">
+        <div class="col-md-2 futer1"> 
+            <a href=" {{url_for('home')}} "><img src=" {{ url_for('static',filename='images/logoc.png')}} " width="25%" alt=""> </a>
+            <hr>
+            <p class="futer"> <a href="" class="futer"> <b>Help and Support</b></a>  <br>
                 
-                <p class="futer"> <a href="" class="futer"> <b>Skiller</b></a>  </p>
-                <p class="futer"    >
-                    <a href="" class="futer"> Digital</a>  <br>
-                    <a href="" class="futer"> Artesan</a>
-                </p>
-            </div>
-            <div class="col-md-3 futer1"> 
-                <p class="futer"> <a href="" class="futer"> <b>About Us</b></a>  </p>
-                <p class="futer">
-                    <a href="" class="futer"> How it works</a>  <br>
-                    <a href="" class="futer"> Careers</a>
-                    <br>
-                    <a href="" class="futer"> Security</a>
-                    <br>
-                    <a href="" class="futer"> Investment</a>
-                    <br>
-                    <a href="" class="futer"> Research & Analysis</a>
-                    <br>
-                    <a href="" class="futer"> News</a>
-        
-                </p>
-            </div>
-            <div class="col-md-3 futer1"> 
-                <p> <a href="" class="futer"> <b>Terms</b> </a>  </p>
-                <p class="futer">
-                    <a href="" class="futer"> Privacy Policy</a>  <br>
-                    <a href="" class="futer"> Terms and Conditions</a>
-                    <br>
-                    <a href="" class="futer"> Copyright Policy</a>
-                    <br>
-                    <a href="" class="futer"> Fees and Charges</a>
-                    <br>
-                    <a href="" class="futer"> Partnership </a>
-        
-                </p>
-            </div>
-            <div class="col-md-2 futer1"> 
-                <p> <a href="" class="futer"> <b>Contact</b> </a>  </p>
-                <p >
-                    <a href="" class="futer"> Contact Us</a>  <br> <br>
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="10%" alt=""></a>
-                    
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="10%"></a>
-                    
-                    <a href="" class="social"> <img src="{{url_for('static',filename='images/instagram.png')}}" alt="" width="10%"></a>
-                    
-                    <a href="" class="social"> <img src="  {{url_for('static',filename='images/twitter.png')}} " alt="" width="10%"></a>
-        
-                </p>
-            </div>
-            
+            </p>
         </div>
+       
+        <div class="col-md-3 futer1"> 
+            <p class="futer"> <a href="" class="futer"> <b>About Us</b></a>  </p>
+            <p class="futer">
+                <a href="{{url_for('howItWorks')}}" class="futer"> How it works</a>  <br>
+                <a href="" class="futer"> Careers</a>
+                <br>
+                <a href="" class="futer"> Investment</a>
+                <br>
+                <a href="" class="futer"> Blog</a>
+    
+            </p>
+        </div>
+        <div class="col-md-3 futer1"> 
+            <p> <a href="" class="futer"> <b>Terms</b> </a>  </p>
+            <p class="futer">
+                <a href="" class="futer"> Privacy Policy</a>  <br>
+                <a href="" class="futer"> Terms and Conditions</a>
+                <br>
+                <a href="" class="futer"> Copyright Policy</a>
+                <br>
+                <a href="" class="futer"> Fees and Charges</a>
+                <br>
+    
+            </p>
+        </div>
+        <div class="col-md-4 futer1"> 
+            <p> <a href="" class="futer"> <b>Contact</b> </a>  </p>
+            <p >
+                <a href="" class="futer"> Contact Us</a>  <br> <br>
+                <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="15%" alt=""></a>
+                
+                <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="15%"></a>
+                
+                <a href="" class="social"> <img src="{{url_for('static',filename='images/instagram.png')}}" alt="" width="15%"></a>
+                
+                <a href="" class="social"> <img src="  {{url_for('static',filename='images/twitter.png')}} " alt="" width="15%"></a>
+    
+            </p>
+        </div>
+        
+    </div>
                 
         </div>
     {% endblock footer %}
