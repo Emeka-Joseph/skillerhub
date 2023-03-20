@@ -15,7 +15,7 @@ from wtforms.validators import DataRequired, length, ValidationError, Regexp, Eq
 #3rd party importations
 from skiller.models import State,Users, Album,Skill,DisplayPictures #import the required tables from the database
 from skiller.forms import JoinForm
-from skiller import app, db,CSRFProtect
+from skiller import app, db,CSRFProtect 
 
 def generate_name(): 
     filename = random.sample(string.ascii_lowercase,10) 
@@ -58,7 +58,7 @@ def search():
         skill_in_need = request.form.get('skill')
         search_state = request.form.get('statename')
         skillset = db.session.query(Users).filter(Users.user_skill==skill_in_need)
-        if skill_in_need=='' or skill_in_need==None:
+        if skillset=='' or skillset==None:
              return redirect('/')
         else:
             return render_template('user/search.html',deets=deets,skill=skill,skillset=skillset, skill_in_need=skill_in_need,random=random, beta=beta,searchdpone=searchdpone,search_state=search_state,allstates=allstates,allskill=allskill)
@@ -118,7 +118,7 @@ def searchResult(cid,st):
 
 @app.route('/clientstate/<int:cid>')
 def searchBySkill(cid):
-    allskill = db.session.query.all()
+    allskill = db.session.query(Skill).all()
     clients = db.session.query(Users).filter(Users.user_id==cid).first()
     deets = db.session.query(Users).get(cid)
     username=deets.user_fullname

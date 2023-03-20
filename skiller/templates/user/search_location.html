@@ -90,7 +90,7 @@
               {% if skill: %}
                 {% if allstates %} 
                   {% for i in deets %}
-                    {% if skill_in_need in i.user_skill and search_state in i.user_state %}
+                    {% if skill_in_need == i.user_skill and search_state == i.user_state %}
                         <div class="col-md-12 my-3"> 
                           <a href="{{url_for('searchResult',cid=i.user_id,st=i.user_state)}}" style="text-decoration: none; color: black;" > 
                         <div class="row"  id="collections">

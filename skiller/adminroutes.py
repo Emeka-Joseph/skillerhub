@@ -73,7 +73,7 @@ def delete_user(id):
     db.session.delete(userobj)
     db.session.commit()
     flash('Succesfully Deleted')
-    return redirect(url_for('usermanager'))
+    return redirect(url_for('usermanager')) 
 
 @app.route('/admin/logout')
 def admin_logout():

@@ -86,11 +86,11 @@
                 <h3 > Previous Projects </h3>
                 <p >Here are some of the explicit projects successfully carried out 
                 
-              {% if deets: %} 
+              {% if deets: %}  ;
                 {% if skill: %}
                   {% if allstates %} 
                     {% for i in deets %}
-                      {% if skill_in_need in i.user_skill %}
+                      {% if skill_in_need == i.user_skill %} 
                           <div class="col-md-12 my-3"> 
                             <a href="{{url_for('searchResult',cid=i.user_id,st=i.user_state)}}" style="text-decoration: none; color: black;" > 
                           <div class="row"  id="collections">
