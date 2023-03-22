@@ -8,11 +8,13 @@ class Users(db.Model):
     gender= db.Column(db.String(100),nullable=False)
     user_email = db.Column(db.String(120), unique=True) 
     user_skill = db.Column(db.String(100),nullable=False)
+    user_intro = db.Column(db.String(100),nullable=True)
     user_phone=db.Column(db.String(120),nullable=True) 
     user_pix=db.Column(db.String(120),nullable=True) 
     user_dpone=db.Column(db.String(120),nullable=True) 
     user_dptwo=db.Column(db.String(120),nullable=True)
     user_dpthree=db.Column(db.String(120),nullable=True)
+
     
 
     user_datereg=db.Column(db.DateTime(), default=datetime.utcnow)
@@ -45,6 +47,7 @@ class Skill(db.Model):
 class Album(db.Model):
     album_id=db.Column(db.Integer, autoincrement=True, primary_key=True)
     album_name=db.Column(db.String(100),nullable=True)
+    album_details=db.Column(db.String(255),nullable=True)
     Album_userid=db.Column(db.Integer, db.ForeignKey('users.user_id'))
     #relationship
     catalogue=db.relationship('Users',backref='user_album')
@@ -78,6 +81,14 @@ class DisplayPictures(db.Model):
     users_project=db.relationship('Users', back_populates='project_users')
     skiller_project=db.relationship('Skiller', back_populates='project_skiller')"""
 
+
+class Messages(db.Model):
+    msg_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    email_address = db.Column(db.String(100),nullable=False)
+    phone_no =db.Column(db.String(15),nullable=True)
+    msg_subject = db.Column(db.String(80))
+    msg_content = db.Column(db.String(255), nullable=False)
+    
 
 
 class State(db.Model):

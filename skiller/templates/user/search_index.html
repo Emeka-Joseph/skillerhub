@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
     
-    <link href=" {{url_for('static',filename='css/skiller.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static',filename='css/gen_index.css')}} " rel="stylesheet">
     
     <link href="{{ url_for('static',filename='heroes.css')}}" rel="stylesheet">
     <link href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -68,8 +68,8 @@
 </head>
  
 <body>
-    <div class="container-fluid">
-        <!--this is for header-->
+    <div class="container-fluid" style="background-color: aliceblue;">
+        <!--this is for header--> 
         <div class="row" id="navbar"> 
            
             <div class="col-md-2 " style="line-height: 50px;">
@@ -79,7 +79,7 @@
                 <a href="{{url_for('howItWorks')}}" class="nalink" style="text-decoration:none; color:  rgb(249, 249, 250);"> <b>HOW IT WORKS</b>  </a> 
             </div>
             <div class="col-md-3">
-                <a href="#" class="nalink" style="text-decoration: none; color:  rgb(254, 254, 254);"> <b> ABOUT </b>  </a>
+                <a href="{{url_for('aboutus')}}" class="nalink" style="text-decoration: none; color:  rgb(254, 254, 254);"> <b> ABOUT </b>  </a>
             </div>
             {% if session.get('user')==None %}
             <div class="col-md-2" style="text-align:right">
@@ -96,6 +96,8 @@
                     
                 </div>           
             {% endif %}
+
+        </div>
         
         
          <!--this is for the search button-->
@@ -281,9 +283,9 @@
             </p>
         </div>
         <div class="col-md-4 futer1"> 
-            <p> <a href="" class="futer"> <b>Contact</b> </a>  </p>
+            <p> <a href="{{url_for('contact_us')}}" class="futer"> <b>Contact</b> </a>  </p>
             <p >
-                <a href="" class="futer"> Contact Us</a>  <br> <br>
+                <a href="{{url_for('contact_us')}}" class="futer"> Contact Us</a>  <br> <br>
                 <a href="" class="social"> <img src="{{url_for('static',filename='images/facebook.png')}}" width="15%" alt=""></a>
                 
                 <a href="" class="social"> <img src="{{url_for('static',filename='images/linkedin.png')}}" alt="" width="15%"></a>
@@ -297,7 +299,7 @@
         
     </div>
                 
-        </div>
+        
     {% endblock footer %}
 
     {% block javascript %}

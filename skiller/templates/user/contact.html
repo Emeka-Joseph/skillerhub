@@ -1,4 +1,4 @@
-{% extends "admin/index.html"%}
+{% extends 'user/search_index.html' %}
   
 
 
@@ -13,7 +13,14 @@
 
   <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: bisque;">
     <!---<form method="post" action="{{url_for('user_dashboard')}}">-->
-      <form action="" method="post" enctype="multipart/form-data">    
+      <form action="" method="post" enctype="multipart/form-data">   
+        {% with c=get_flashed_messages() %}
+            {% if c %}
+                {% for msg in c %}
+                <div class="alert alert-info col-md-5">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %} 
 
         <div>
             <label for="number" class="form-label mt-3"> Phone Number </label>
@@ -36,11 +43,9 @@
                 <input type="text" name="address" id="address" placeholder="enter house no, street name and area" class="form-control" >
           </div>
           <div class="form-floating" align="center">
-            <button class="w-50 btn btn-lg btn-success" type="submit">Update Contact</button>
+            <button class="w-50 btn btn-lg btn-primary mt-3" type="submit">Update Contact</button>
         </div>
         </div>
-
-
       </form>
     </div>
     

@@ -1,7 +1,10 @@
-{% extends 'index.html' %}
+{% extends 'user/search_index.html' %}
 
 {% block search_button %} <div class="row"> 
-    <div class="col-md-4"> <h2>Error 404, Kindly note that the page you visited does not exist, click on the home page to return home</h2></div>
+    <div class="col-md-4"> <h2>Error 404, Kindly note that the page you visited does not exist, click on the logo/icon to return to homepage</h2>
+        <a href="{{url_for('/')}}">Please click here to return home</a>
+    
+    </div>
     <div class="col-md-8"> 
         <img src="{{url_for('static',filename='images/404.jpg')}}">
     </div>

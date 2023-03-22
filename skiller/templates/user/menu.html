@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu</title>
 
   
+    <style>
+        
     </style>
 </head>
-<body>
+<body style="background-color: rgb(14, 8, 171);">
     
 <div class="list-group list-group-flush my-3" style="color: white; text-align:center">
     <a href="/dashboard" class="list-group-item list-group-item-action bg-transparent second-text active">
-        <i class=" btn  btn-info fa-sharp fa-solid fa-eye"> <b> Dashboard </b> </i>  </a>
+        <i class=" btn  btn-primary fa-sharp fa-solid fa-eye form-control"> <b> Dashboard </b> </i>  </a>
 
 
     <a href="{{url_for('user_profile')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light"> 
-        <i class=" btn  btn-outline-info fa-solid fa-eye"> <b> Update Profile Picture </b> </i>  </a>
+        <i class=" btn  btn-outline-primary fa-solid fa-eye form-control"> <b> Update Profile Picture </b> </i>  </a>
     
 
     <a href="{{url_for('skill')}}" class=" list-group-item-action bg-transparent second-text fw-bold text-light mt-3" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 
-        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"><b>Skill </b> </i></a> 
+        <i class=" btn  btn-outline-primary fa-solid fa-eye form-control"><b>Skill </b> </i></a> 
     
      
     <p style="color:rgb(253, 253, 251)"> <b>{{deets.user_skill}}</b> </p>     
-    <p style="color:rgb(251, 251, 249)"> <b>{{ hint }}</b>  </p>  
+    <p style="color:rgb(251, 251, 249)"> {{ deets.user_intro }}  </p>  
 
             <hr sytle="border:3px solid white; color:brown">
 
     <a href="{{url_for('album')}}" class=" list-group-item list-group-item-action bg-transparent second-text fw-bold text-light mb-3">
-        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"> <b> Click to Add To Catalogue </b> </i>  </a>
+        <i class=" btn  btn-outline-primary fa-sharp fa-solid fa-eye form-control"> <b> Click to Add To Catalogue </b> </i>  </a>
 
     <a href="{{url_for('contact')}}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold text-light">
-        <i class=" btn  btn-outline-info fa-sharp fa-solid fa-eye"> <b> Contact Address </b> </i> </a>
+        <i class=" btn  btn-outline-primary fa-sharp fa-solid fa-eye form-control"> <b> Contact Address </b> </i> </a>
 
         {% if session.get('user')!=None or session.get('client')!=None %}
          <strong>{{deets.user_address}}</strong> 
@@ -49,13 +51,13 @@
             <h6 class="mt-5"> <b>Choose three(3) best pictures To Appear on Your Profile Search</b> </h6>
             <div class="row" >
                 <div class="col">
-                    <a href="{{url_for('displaypics')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning" id="dash_menu2">Picture1</i>  </a>
+                    <a href="{{url_for('displaypics')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-primary" id="dash_menu2">Picture1</i>  </a>
                 </div>
                 <div class="col" style="display: flex; justify-content: center;">
-                    <a href="{{url_for('displaypics2')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning" id="dash_menu2">Picture2</i>  </a>
+                    <a href="{{url_for('displaypics2')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-primary" id="dash_menu2">Picture2</i>  </a>
                 </div>
                 <div class="col">
-                    <a href="{{url_for('displaypics3')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-warning mb-2" id="dash_menu2">Picture3</i>  </a>
+                    <a href="{{url_for('displaypics3')}}" > <i class="fa-sharp fa-solid fa-eye btn btn-sm  btn-outline-primary mb-2" id="dash_menu2">Picture3</i>  </a>
                 </div>
             </div>      
 
@@ -95,7 +97,7 @@
             
             <hr style="color:aliceblue">
     <a href="{{url_for('user_logout')}}" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold" style="display:inline;">
-        <i class=" btn btn-danger btn-outline-warning fa-sharp fa-solid fa-power-off"><b>Logout</b></i>  </a>
+        <i class=" btn btn-outline-danger text-light fa-sharp fa-solid fa-power-off"><b>Logout</b></i>  </a>
 
       {% endif %}
 

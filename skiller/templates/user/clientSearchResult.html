@@ -45,6 +45,7 @@
                   <div class="col-md-4 mb-3" id="field_container" > 
                   
                      <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="270" height="350">
+                     <a href="{{url_for('details', id=p.album_id,deets=p.album_details)}}" style="text-decoration: none;" >Click to view details...</a>
                   
                   </div>    
                    {% endif %}           

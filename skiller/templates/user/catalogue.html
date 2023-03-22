@@ -1,4 +1,4 @@
-  {% extends 'user/index.html' %}
+{% extends 'user/index.html' %}
 
   {% block header %}
   <style>
@@ -21,30 +21,31 @@
 
   {% block search_button %} 
  
-  <div class="container-fluid" style="background-color:rgb(237,238,192) ;">
-    <div class="row" style="display: flex; justify-content: center;">
+  
+    <div class="row" style="display: flex; justify-content: center; border: 0px solid blue">
       
-        <div class="col-md-12" style="display: flex; justify-content: center;">  
+        <div class="col-md-6" style="display: flex; justify-content: center;">  
                   
             <form action="" method="post" enctype="multipart/form-data">
-
+              <div>
                 <h4>{{ deets.user_fullname }} </h4> 
                 <span> upload pictures of successfully completed projects </span>
-              <div class="col-md-6" >
+              
                 <input type="file" name="project_picture">
+                <textarea name="details" id="details" cols="25" rows="2" placeholder="Tell us briefly about the project you are about to post" class="form-control"></textarea>
                  <button class="btn btn-success btn-sm mt-3 form-control" >Upload a project</button>
-                 <a href="/dashboard" class="btn btn-warning btn-sm mt-3 form-control" >Cancel</a>
+                 <a href="/dashboard" class="btn btn-warning btn-sm mt-3 form-control" >Back to Dashboard</a>
               </div>
             </form>
         </div>
     
-    </div>
-
+    
   </div>
   {% endblock %}
   {% block banner_display %}   {% endblock %}
   {% block card_details %}   {% endblock %}
    {% block banner %}   {% endblock %}
+   
 
     
 

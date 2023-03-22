@@ -34,7 +34,7 @@ div{
     z-index: -2;
 }
 #navbar{
-    background-color: rgba(16, 5, 176, 0.915);
+    background-color: rgba(53, 6, 163, 0.915);
     color: rgb(254, 254, 255);
     text-decoration: none; 
     min-height: 50px;
@@ -178,6 +178,39 @@ div{
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
+    }
+  }
+
+  @media (min-width: 320px) {
+    #imgcheck {
+      font-size: 1em;
+      width: 250px;
+      height: 350px;
+    }
+  }
+
+  @media (min-width: 460px) {
+    #imgcheck {
+      font-size: 1em;
+      width: 375px;
+      height: 400px;
+    }
+  }
+
+
+  @media (min-width: 680px) {
+    #imgcheck {
+      font-size: 1em;
+      width: 400px;
+      height: 500px;
+    }
+  }
+
+  @media (min-width: 975px) {
+    #imgcheck {
+      font-size: 1em;
+      width: 550px;
+      height: 500px;
     }
   }
 

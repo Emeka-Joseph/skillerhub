@@ -13,7 +13,7 @@ from wtforms.validators import DataRequired, length, ValidationError, Regexp, Eq
 
 
 #3rd party importations
-from skiller.models import State,Users, Album,Skill,DisplayPictures #import the required tables from the database
+from skiller.models import State,Users, Album,Skill,DisplayPictures,Messages #import the required tables from the database
 from skiller.forms import JoinForm
 from skiller import app, db,CSRFProtect 
 
@@ -48,10 +48,11 @@ def home():
 @app.route('/search',methods=['POST','GET'])
 def search():
     allstates = State.query.all()
-    skill = Skill.query.all()
-    allskill = Skill.query.all()
+    skill = Skill.query.order_by(Skill.skill_name.asc()).all()
+    allskill = Skill.query.order_by(Skill.skill_name.asc()).all()
+    #Album.query.order_by(Album.album_id.desc()).all()
      
-    if request.method=='POST':
+    if request.method=='POST': 
         deets = db.session.query(Users).all()
         beta = db.session.query(Users).first()
         searchdpone = beta.user_dpone
@@ -118,7 +119,17 @@ def searchResult(cid,st):
 
 @app.route('/clientstate/<int:cid>')
 def searchBySkill(cid):
-    allskill = db.session.query(Skill).all()
+    clients = db.session.query(Users).filter(Users.user_id==cid).first()
+    #st_state = db.session.query(Users).filter(Users.user_state==st).first()
+    deets = db.session.query(Users).get(cid)
+    username=deets.user_fullname
+    propic = Album.query.order_by(Album.album_id.desc()).all()
+    disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
+    #db.session.query(Album).all()
+    album_userid = db.session.query(Users).get(cid)
+    dp_userid = db.session.query(Users).get(cid)
+    return render_template('user/clientSearchResult.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients)
+    """allskill = db.session.query(Skill).all()
     clients = db.session.query(Users).filter(Users.user_id==cid).first()
     deets = db.session.query(Users).get(cid)
     username=deets.user_fullname
@@ -126,14 +137,37 @@ def searchBySkill(cid):
     disp = DisplayPictures.query.order_by(DisplayPictures.dp_id.desc()).all()
     album_userid = db.session.query(Users).get(cid)
     dp_userid = db.session.query(Users).get(cid)
-    return render_template('user/search_location.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients,allskill=allskill)        
-   
+    return render_template('user/search_location.html',deets=deets,username=username,propic=propic,disp=disp,clients=clients,allskill=allskill)"""        
+
+
+
+
 @app.route('/join')
 def join():
     states = State.query.all()
     #lg = db.session.query(Lga).all()
     return render_template('user/join.html',states=states)  
 
+
+@app.route('/mesages', methods=['GET','POST'])
+def messages():
+    deets = db.session.query(Users).all()
+    if request.method=='GET':
+        return render_template('user/contact_us.html',deets=deets)
+    else:
+        mail = request.form.get('mail')
+        phone = request.form.get('phone_no')
+        subject = request.form.get('subject')
+        content = request.form.get('message')
+        if mail !='' and subject !='' and content !='':
+            m = Messages(email_address=mail,phone_no=phone,msg_subject=subject,msg_content=content)
+            db.session.add(m)
+            db.session.commit()
+            flash('Thank you for contacting us, we will attend to your message shortly and respond accordingly')
+            return redirect(url_for('messages'))
+        else:
+            flash('Make sure that the filds were rightly filled')
+            
 
 
 @app.route('/register', methods=['GET','POST']) 
@@ -144,20 +178,13 @@ def register():
         return render_template('user/join.html',deets=deets)
     else:
         fullname = request.form.get('fullname')
-        #userstate = db.session.query(State)
-        #state = userstate.state_name
         gender = request.form.get('gender')
         email=request.form.get('email')
         phone = request.form.get('phone')
-        #state = request.form.get('stateid')
-        #state = request.form.get('stateid')
-        #address = request.form.get('address')
         pwd=request.form.get('password')
         con_pwd = request.form.get('conpwd')
         hashed_pwd = generate_password_hash(pwd)
         if fullname !='' and email !='' and pwd !='' and gender!='' and pwd == con_pwd :
-
-            #insert into database using ORM method
             u=Users(user_fullname=fullname,user_email=email,user_pwd=hashed_pwd, user_phone =phone, user_pix='',user_skill='', user_address='', gender=gender, user_state='')
             #add to session
             db.session.add(u)
@@ -175,6 +202,13 @@ def register():
 def howItWorks():
     deets = db.session.query(Users).all()
     return render_template('user/how_it_works.html',deets=deets)
+
+
+@app.route('/contact_us')
+def contact_us():
+    deets = db.session.query(Users).all()
+    return render_template('user/contact_us.html',deets=deets)
+
 
 
 @app.route('/aboutus')
@@ -279,7 +313,8 @@ def skill():
             skill = request.form.get('skill')
             skilldit = request.form.get('hint')
             userobj = db.session.query(Users).get(id)
-            userobj.user_skill=skill 
+            userobj.user_skill=skill
+            userobj.user_intro=skilldit 
             db.session.commit()
             flash('Skill successfully updated')
             return redirect(url_for('user_dashboard',skilldit=skilldit))
@@ -335,9 +370,12 @@ def user_profile():
                 flash('Please chose a file')
                 return 'Please chose a file'
 
-@app.route('/bet')
-def bet():
-    return render_template('user/catalogue.html')
+@app.route('/details/<int:id>,<deets>')
+def details(id,deets):
+    propic = Album.query.order_by(Album.album_id.desc()).all()
+    det = db.session.query(Album).filter(Album.album_id==id).first()
+    detail = db.session.query(Album).filter(Album.album_name==deets).first()
+    return render_template('user/details.html',det=det,propic=propic,detail=detail)
 
 
 @app.route('/album', methods=['POST', 'GET'])
@@ -480,5 +518,18 @@ def displaypics3():
                         return 'File extension not allowed '
                 else:
                     flash('Please chose a file')
+
+@app.errorhandler(404)
+def pagenotfound(error):
+    return render_template('user/error404.html', error=error),404
+
+@app.errorhandler(500)
+def internalerror(error):
+    ''' For you to see this in action, ensure the debug mode is set to False'''
+    return render_template('user/error500.html', error=error),500
+
+
+
+
             
             

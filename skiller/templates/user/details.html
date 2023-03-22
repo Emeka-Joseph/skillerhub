@@ -1,0 +1,68 @@
+  {% extends 'user/search_index.html' %}
+
+  {% block header %}
+  <style>
+    #dash{
+      background-color: rgb(84, 5, 5);
+    }
+    .album{
+      min-height: 200px;
+      border: 0px solid blue;
+    } 
+    #dash2{
+      background-color:rgb(234, 233, 238);
+    }
+    div{
+      border: 0px solid black;
+    }
+    #collections{
+      border: 0px solid blue;
+    }
+    
+
+  </style>
+  {% endblock header %}
+
+  {% block search_button %} 
+ 
+   <div class="row" style="display: flex;">
+      
+        <div class="col-md-12" style="background-color: white;padding:1em; display: flex; justify-content: center; border: 0px solid brown; background-color: rgb(253, 253, 252);">
+          <hr>
+            <div class="row" style="display:flex; align-content:space-around;"> 
+              
+              <div class="row" id="collections" style="display: flex; justify-content:flex-start;"> 
+                  {% if det %}
+                  
+                  <div class="col-md-9" id="field_container" > 
+                     <img src="{{ url_for('static',filename='uploads/album/'+det.album_name)}}"  alt="" width="500" height="500" id="imgcheck">
+                       <!--  <p></a> <a href="">Back</a> </p> -->
+                  </div>           
+                  {%endif %} 
+
+                  <div class="col-md-3">
+                    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3em; text-align:start; margin-top: 50%; color: rgb(7, 0, 0)"> {{det.album_details}} </p>
+                  </div>
+              
+              </div>
+                          
+            </div>
+          </div>
+          
+    </div>
+  {% endblock %}
+  {% block banner_display %}   {% endblock %}
+  {% block card_details %}   {% endblock %}
+   {% block banner %}   {% endblock %}
+n
+        {% block javascript %} 
+        <script src="{{url_for('static',filename='jquery.min.js')}}"></script>
+    <script type="text/javascript">
+      
+    </script>
+        {% endblock %}
+</body>
+</html
+
+
+    

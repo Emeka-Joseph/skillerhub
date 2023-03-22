@@ -92,7 +92,7 @@
                     {% for i in deets %}
                       {% if skill_in_need == i.user_skill %} 
                           <div class="col-md-12 my-3"> 
-                            <a href="{{url_for('searchResult',cid=i.user_id,st=i.user_state)}}" style="text-decoration: none; color: black;" > 
+                            <a href="{{url_for('searchBySkill',cid=i.user_id)}}" style="text-decoration: none; color: black;" > 
                           <div class="row"  id="collections">
                               <div class="col-md-3">
                                 {% if i.user_pix !='' and i.user_pix != None  %}
@@ -138,18 +138,11 @@
                     {% endfor %}
                   {% endif %}  
                 {% endif %}
-              {% endif %}  
+              {% endif %}   
              
 
               </div>
-              {% with c=get_flashed_messages() %}
-            {% if c %}
-                {% for msg in c %}
-                <div class="alert alert-info col-md-5">{{ msg }}</div>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-
+        
                     
             </div>
           </div>

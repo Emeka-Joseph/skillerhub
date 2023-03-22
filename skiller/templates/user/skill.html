@@ -1,4 +1,4 @@
-{% extends "admin/index.html"%}
+{% extends "user/search_index.html"%}
   
 
 
@@ -7,32 +7,34 @@
 
 
 <div class="row"> 
-  <div class="col-md-3" style="background-color: rgb(0, 0, 0);padding:1em; border: 1px solid brown;">
+  <div class="col-md-3" style="background-color: rgb(0, 0, 0);padding:1em; border: 0px solid brown;">
     {% include 'user/menu.html' %}
   </div>
 
-  <div class="col-md-9" style="background-color: white;padding:1em; display: flex; justify-content: center; align-items: center; border: 0px solid brown; background-color: bisque;">
+  <div class="col-md-9" style="background-color: white; border: 0px solid brown; background-color: bisque; align-items: center;">
     <!---<form method="post" action="{{url_for('user_dashboard')}}">-->
-      <form action="" method="post" enctype="multipart/form-data">    
 
-        <div> 
-          <div class="col-md-4">
-            <label for="">Select A Skill</label>
-            <select name="skill" id="skill">
-                   
-                <option value=""> Please select an</option>
-                   {% for s in chose %}
-                <option value="{{s.skill_name}}">{{s.skill_name}}</option> 
-                {% endfor %}
-            </select>
-            <textarea name="hint" id="hint" cols="35" rows="5" placeholder="We think you are wonderful, tell us briefly about your skills"></textarea>
-           <button class="btn btn-success mt-3" >Update Skill</button>
+      <div class="row" style="justify-content: center;"> 
+        <div class="col-md-4 mt-5"> 
+          <form action="" method="post" enctype="multipart/form-data">    
+
+            <div> 
+              
+                <label for="">Select A Skill</label>
+                <select name="skill" id="skill">
+                      
+                    <option value=""> Please select an</option>
+                      {% for s in chose %}
+                    <option value="{{s.skill_name}}">{{s.skill_name}}</option> 
+                    {% endfor %}
+                </select>
+                <textarea name="hint" id="hint" cols="35" rows="5" placeholder="Tell us briefly about your skills or additional skill on which you are an expert on"></textarea>
+                  <button class="btn btn-success mt-3 form-control" >Update Skill</button>   
+            </div>
+          </form>
         </div>
-    </div>
-
-
-      </form>
-    </div>
+      </div>
+  </div>
     
     
      </div>

@@ -26,9 +26,6 @@
  
    <div class="row">
       <div class="col-md-3" id="dash" style="border: 0px solid blue;">
-        <!--<div class="form-floating mb-5" style="border: 1px solid black; height: 100px; width: 100px;    align-self:flex-start; background-color: silver;">
-          <span >profile picture</span>
-        </div>-->
         {% if deets: %}
           {% if deets.user_pix !='' and deets.user_pix != None  %}
                 <img src="{{url_for('static', filename='uploads/'+deets.user_pix)}}" alt="mdo" width="70" height="70" class="rounded-circle">
@@ -49,7 +46,7 @@
           <hr>
             <div class="row" style="display:flex; align-content:space-around;"> 
               
-              <div class="col-md-12" style="text-align: center;">
+              <div class="col-md-12" style="text-align: center; color: blue;">
                 <h3 class="my-4"> Previous Projects by {{ deets.user_fullname }}</h3>   
               </div>
 
@@ -65,15 +62,13 @@
                   {% for p in propic %}
                   {% if p.Album_userid==session['user'] %}
                   <div class="col-md-4" id="field_container" > 
-                  
                      <img src="{{ url_for('static',filename='uploads/album/'+p.album_name)}}"  alt="" width="250" height="350" id="imgcheck">
-
-      
-
-                     <a href="{{url_for('delete', id=p.album_id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this photo?')"> <i class="fa fa-trash">Delete</i>  </a>
-                  
+                     <a href="{{url_for('delete', id=p.album_id)}}" class="btn btn-danger btn-sm" onclick="return confirm('Do you really want to delete this photo?')"> <i class="fa fa-trash">Delete</i>  </a> 
+                     <a href="{{url_for('details', id=p.album_id,deets=p.album_details)}}" style="text-decoration: none;" >Click to view details...</a>
                   </div>    
-                   {% endif %}           
+                   {% endif %} 
+                    
+                   
                   {%endfor %} 
               
               </div>
